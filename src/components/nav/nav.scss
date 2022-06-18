@@ -1,0 +1,13 @@
+.nav {
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.157);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+}

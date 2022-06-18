@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createOrder } from "../../redux/actions";
 import "./orderCreate.scss";
 
 const Order = () => {
   const [orderInput, setOrderInput] = useState("");
-  const [newOrder, setNewOrder] = useState("");
+  const dispatch = useDispatch();
 
   const handleNewOrderInput = (e) => {
     e.preventDefault();
@@ -11,11 +13,11 @@ const Order = () => {
   };
 
   const handleNewOrderSubmit = () => {
-    setNewOrder(orderInput);
+    dispatch(createOrder({ orderInput: orderInput, startTime: new Date() }));
   };
 
   return (
-    <div>
+    <div className="order-create">
       <h1>New order:</h1>
       <input onChange={handleNewOrderInput} type="text" />
       <button onClick={handleNewOrderSubmit}>Prepair</button>

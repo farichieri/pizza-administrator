@@ -1,11 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Nav from "../../components/nav/Nav";
 import "./home.scss";
-import OrderCreate from "../../components/order-create/OrderCreate";
 
 const Home = () => {
   return (
     <div className="home">
-      <OrderCreate />
+      <Nav />
+      <Link to="/cashier">
+        <button>Cashier</button>
+      </Link>
+      <Link to="/kitchen">
+        <button>Kitchen</button>
+      </Link>
     </div>
   );
 };
