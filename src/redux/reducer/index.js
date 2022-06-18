@@ -1,16 +1,16 @@
 const InitialState = {
-  orders: [],
+  actualOrders: [],
 };
 
 const rootReducer = (state = InitialState, action) => {
   switch (action.type) {
     case "CREATE_ORDER":
-      const newOrder = [action.payload];
-      const actualOrders = state.orders;
+      const newOrder = action.payload;
+      const actualOrders = state.actualOrders;
       actualOrders.push(newOrder);
       return {
         ...state,
-        orders: actualOrders,
+        actualOrders: actualOrders,
       };
     default:
       return {

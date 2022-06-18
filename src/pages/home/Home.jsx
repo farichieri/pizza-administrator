@@ -7,12 +7,7 @@ const Home = () => {
   return (
     <div className="home">
       <Nav />
-      <Link to="/cashier">
-        <button>Cashier</button>
-      </Link>
-      <Link to="/kitchen">
-        <button>Kitchen</button>
-      </Link>
+      Home
     </div>
   );
 };
