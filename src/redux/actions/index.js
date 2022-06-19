@@ -8,3 +8,15 @@ export const createOrder = (order) => {
     console.log(error);
   }
 };
+
+export const orderReady = (order) => {
+  // console.log(order);
+  try {
+    return {
+      type: "ORDER_READY",
+      payload: order,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
