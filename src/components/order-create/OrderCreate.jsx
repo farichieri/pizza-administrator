@@ -13,7 +13,7 @@ const Order = () => {
   };
 
   const handleNewOrderSubmit = () => {
-    dispatch(createOrder({ name: orderInput, startTime: Date(Date.now()), endDate: "" }));
+    dispatch(createOrder({ name: orderInput, startTime: Date.now(), endDate: "" }));
   };
 
   return (
