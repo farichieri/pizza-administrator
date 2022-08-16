@@ -8,7 +8,6 @@ import './order.scss';
 const Order = ({ order }) => {
   const dispatch = useDispatch();
   const [orderTime, setOrderTime] = useState(Date.now() - order.startTime);
-  let time = Date.now();
 
   const handleReady = (order) => {
     dispatch(orderReady({ ...order, endDate: Date.now() }));
@@ -22,17 +21,22 @@ const Order = ({ order }) => {
   };
 
   const formatTime = (date) => {
-    return new Date(date).getMinutes() + ':' + new Date(date).getSeconds();
+    return (
+      String(new Date(date).getMinutes()).padStart(2, '0') +
+      ':' +
+      String(new Date(date).getSeconds()).padStart(2, '0')
+    );
   };
 
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       setOrderTime(Date.now() - order.startTime);
     }, 1000);
+    return () => clearInterval(interval);
   });
 
   return (
-    <section className='order'>
+    <section className={!order.endDate ? 'order' : 'order-done'}>
       <div>
         <p>{order.name}</p>
       </div>
