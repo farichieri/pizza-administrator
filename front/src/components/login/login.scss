@@ -1,0 +1,30 @@
+.login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+
+  form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    input {
+      width: 150px;
+      margin: 5px;
+      background-color: transparent;
+      color: white;
+      border-radius: 3px;
+      border: 1px solid gray;
+    }
+
+    button {
+      cursor: pointer;
+      margin: 5px;
+      width: 150px;
+      border-radius: 5px;
+    }
+  }
+}

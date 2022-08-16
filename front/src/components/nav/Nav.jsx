@@ -1,22 +1,28 @@
-import React from "react";
-import "./nav.scss";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './nav.scss';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+  };
+
   return (
-    <nav className="nav">
-      <Link to="/">
+    <nav className='nav'>
+      <Link to='/'>
         <button>Home</button>
       </Link>
-      <Link to="/kitchen">
+      <Link to='/kitchen'>
         <button>Orders</button>
       </Link>
-      <Link to="/cashier">
+      <Link to='/cashier'>
         <button>Create Order</button>
       </Link>
-      <Link to="/admin">
-        <button>Admin</button>
+      <Link to='/dashboard'>
+        <button>Dashboard</button>
       </Link>
+      <button onClick={handleLogout}>Logout</button>
     </nav>
   );
 };

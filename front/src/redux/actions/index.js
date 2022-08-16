@@ -1,7 +1,7 @@
 export const createOrder = (order) => {
   try {
     return {
-      type: "CREATE_ORDER",
+      type: 'CREATE_ORDER',
       payload: order,
     };
   } catch (error) {
@@ -10,12 +10,19 @@ export const createOrder = (order) => {
 };
 
 export const orderReady = (order) => {
-  // console.log(order);
   try {
     return {
-      type: "ORDER_READY",
+      type: 'ORDER_READY',
       payload: order,
     };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const login = (payload) => {
+  try {
+    console.log(payload);
   } catch (error) {
     console.log(error);
   }

@@ -1,12 +1,12 @@
-import React from "react";
-import Nav from "../../components/nav/Nav";
-import "./home.scss";
+import React from 'react';
+import Nav from '../../components/nav/Nav';
+import './home.scss';
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className='home'>
       <Nav />
-      Home
+      Bienvenido!
     </div>
   );
 };
