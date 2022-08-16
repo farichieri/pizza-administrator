@@ -1,51 +1,64 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { orderReady } from "../../../redux/actions";
-import "./order.scss";
+import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { orderReady } from '../../../redux/actions';
+import './order.scss';
 
 const Order = ({ order }) => {
   const dispatch = useDispatch();
-  let time = new Date().toLocaleString();
-  // let time = Date.now() - order.startTime;
-  const [cTime, setTime] = useState(time);
+  const [orderTime, setOrderTime] = useState(Date.now() - order.startTime);
+  let time = Date.now();
 
   const handleReady = (order) => {
     dispatch(orderReady({ ...order, endDate: Date.now() }));
   };
 
   const formatDate = (date) => {
-    return new Date(date).toLocaleString("es-AR", { dateStyle: "full", timeStyle: "medium" });
+    return new Date(date).toLocaleString('es-AR', {
+      dateStyle: 'short',
+      timeStyle: 'medium',
+    });
   };
 
   const formatTime = (date) => {
-    return new Date(date).getMinutes() + ":" + new Date(date).getSeconds();
+    return new Date(date).getMinutes() + ':' + new Date(date).getSeconds();
   };
 
   useEffect(() => {
     setInterval(() => {
-      setTime(time);
+      setOrderTime(Date.now() - order.startTime);
     }, 1000);
   });
 
   return (
-    <div className="order">
-      <h3>Order: {order.name}</h3>
-      <p>Start: {formatDate(order.startTime)}</p>
-      <p>End: {order.endDate ? formatDate(order.endDate) : "Prepairing"}</p>
-      {order.endDate ? (
-        <p>Time: {formatTime(order.endDate - order.startTime)}</p>
-      ) : (
-        <p>Time: {cTime}</p>
-        // <p>Time: {formatTime(Date.now() - order.startTime)}</p>
-      )}
-      {!order.endDate && (
-        <button className="ready-button" onClick={() => handleReady(order)}>
-          READY
-        </button>
-      )}
-    </div>
+    <section className='order'>
+      <div>
+        <p>{order.name}</p>
+      </div>
+      <div>
+        <p>{formatDate(order.startTime)}</p>
+      </div>
+      <div>
+        <p>{order.endDate ? formatDate(order.endDate) : 'Prepairing'}</p>
+      </div>
+      <div>
+        {order.endDate ? (
+          <p>{formatTime(order.endDate - order.startTime)}</p>
+        ) : (
+          <p>{formatTime(orderTime)}</p>
+        )}
+      </div>
+      <div>
+        {!order.endDate ? (
+          <button className='ready-button' onClick={() => handleReady(order)}>
+            READY
+          </button>
+        ) : (
+          <p>DONE</p>
+        )}
+      </div>
+    </section>
   );
 };
 

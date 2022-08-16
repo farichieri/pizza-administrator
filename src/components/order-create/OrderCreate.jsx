@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createOrder } from "../../redux/actions";
-import "./orderCreate.scss";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createOrder } from '../../redux/actions';
+import './orderCreate.scss';
 
 const Order = () => {
-  const [orderInput, setOrderInput] = useState("");
+  const [orderInput, setOrderInput] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleNewOrderInput = (e) => {
     e.preventDefault();
@@ -13,14 +15,19 @@ const Order = () => {
   };
 
   const handleNewOrderSubmit = () => {
-    dispatch(createOrder({ name: orderInput, startTime: Date.now(), endDate: "" }));
+    dispatch(
+      createOrder({ name: orderInput, startTime: Date.now(), endDate: '' })
+    );
+    navigate('/kitchen');
   };
 
   return (
-    <div className="order-create">
+    <div className='order-create'>
       <h1>New order:</h1>
-      <input onChange={handleNewOrderInput} type="text" />
-      <button onClick={handleNewOrderSubmit}>Prepair</button>
+      <form onSubmit={handleNewOrderSubmit}>
+        <input onChange={handleNewOrderInput} type='text' />
+        <button>Prepair</button>
+      </form>
     </div>
   );
 };

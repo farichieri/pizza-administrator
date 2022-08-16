@@ -1,8 +1,23 @@
 .actual-orders {
-  margin: auto;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+
+  .orders-table {
+    width: 95%;
+    position: relative;
+
+    .orders-table-columns {
+      display: flex;
+      flex-direction: row;
+      background-color: gray;
+
+      div {
+        width: 100%;
+      }
+    }
+  }
 }
