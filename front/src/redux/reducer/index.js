@@ -1,10 +1,11 @@
 const InitialState = {
   actualOrders: [],
+  products: [],
 };
 
 const rootReducer = (state = InitialState, action) => {
   switch (action.type) {
-    case "CREATE_ORDER":
+    case 'CREATE_ORDER':
       const newOrder = action.payload;
       const actualOrders = state.actualOrders;
       actualOrders.push(newOrder);
@@ -12,14 +13,21 @@ const rootReducer = (state = InitialState, action) => {
         ...state,
         actualOrders: actualOrders,
       };
-    case "ORDER_READY":
+    case 'ORDER_READY':
       const actualOrders2 = state.actualOrders;
       const newOrders = actualOrders2?.map((order) =>
-        order.name === action.payload.name ? { ...order, endDate: action.payload.endDate } : order
+        order.name === action.payload.name
+          ? { ...order, endDate: action.payload.endDate }
+          : order
       );
       return {
         ...state,
         actualOrders: newOrders,
+      };
+    case 'GET_PRODUCTS':
+      return {
+        ...state,
+        products: action.payload,
       };
     default:
       return {

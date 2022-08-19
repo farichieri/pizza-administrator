@@ -1,13 +1,15 @@
 import React from 'react';
-import Auth from '../../components/login/Login';
 import Nav from '../../components/nav/Nav';
+import ProductCreate from '../../components/product-create/ProductCreate';
+import Products from '../../components/products/Products';
 import './dashboard.scss';
 
 const Dashboard = () => {
   return (
     <div className='dashboard'>
       <Nav />
-      <Auth />
+      <ProductCreate />
+      <Products />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 export const createOrder = (order) => {
+  console.log(order);
   try {
     return {
       type: 'CREATE_ORDER',
@@ -23,6 +24,23 @@ export const orderReady = (order) => {
 export const login = (payload) => {
   try {
     console.log(payload);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProducts = () => {
+  try {
+    return (dispatch) => {
+      fetch('http://localhost:5000/api/products').then((response) =>
+        response.json().then((products) =>
+          dispatch({
+            type: 'GET_PRODUCTS',
+            payload: products.products,
+          })
+        )
+      );
+    };
   } catch (error) {
     console.log(error);
   }

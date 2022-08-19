@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/actions';
 import './login.scss';
 import PropTypes from 'prop-types';
 
 const Login = ({ setToken }) => {
-  const dispatch = useDispatch();
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   dispatch(login({ username, password }));
-  // };
 
   async function loginUser(event) {
     event.preventDefault();
@@ -32,15 +24,6 @@ const Login = ({ setToken }) => {
     }
     console.log(data);
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const token = await loginUser({
-      username,
-      password,
-    });
-    setToken(token);
-  };
 
   return (
     <div className='login'>
