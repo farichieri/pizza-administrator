@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const Product = require('./models/product');
+const Order = require('./models/order');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -22,6 +23,7 @@ app.get('/users', (req, res) => {
   res.send({ users: users });
 });
 
+// USER //
 app.post('/api/create_user', async (req, res) => {
   try {
     const newPassword = await bcrypt.hash(req.body.password, 10);
@@ -32,26 +34,6 @@ app.post('/api/create_user', async (req, res) => {
       isAdmin: req.body.isAdmin,
     });
     res.json({ status: 'ok' });
-  } catch (error) {
-    res.send({ message: error });
-  }
-});
-
-app.post('/api/create_product', async (req, res) => {
-  try {
-    await Product.create({
-      productName: req.body.productName,
-    });
-    res.json({ status: 'ok' });
-  } catch (error) {
-    res.send({ message: error });
-  }
-});
-
-app.use('/api/products', async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json({ products });
   } catch (error) {
     res.send({ message: error });
   }
@@ -82,6 +64,52 @@ app.use('/api/login', async (req, res) => {
     return res.json({ status: 'ok', user: token });
   } else {
     return res.json({ status: 'error', user: false });
+  }
+});
+
+// PRODUCT //
+app.post('/api/create_product', async (req, res) => {
+  try {
+    const product = await Product.create({
+      productName: req.body.productName,
+    });
+    res.json({ product });
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
+app.get('/api/products', async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.json({ products });
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
+// ORDER //
+app.post('/api/create_order', async (req, res) => {
+  try {
+    const order = await Order.create({
+      orderName: req.body.orderName,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      ammount: req.body.ammount,
+      price: req.body.price,
+    });
+    res.send({ order });
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
+app.get('/api/orders', async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json({ orders });
+  } catch (error) {
+    res.send({ message: error });
   }
 });
 

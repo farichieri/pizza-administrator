@@ -23,7 +23,7 @@ const Order = () => {
     event.preventDefault();
     if (!!orderInput) {
       dispatch(
-        createOrder({ name: orderInput, startTime: Date.now(), endDate: '' })
+        createOrder({ name: orderInput, startDate: Date.now(), endDate: '' })
       );
       navigate('/kitchen');
     }
@@ -48,6 +48,7 @@ const Order = () => {
               );
             })}
         </select>
+        <input type='number' min='0' placeholder='ammount' />
         <button>Prepair</button>
       </form>
     </div>

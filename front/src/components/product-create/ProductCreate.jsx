@@ -20,6 +20,7 @@ const ProductCreate = () => {
     const data = await response.json();
     if (data) {
       alert('Product created successfully');
+      dispatch(getProducts());
     } else {
       alert('Error creating product');
     }

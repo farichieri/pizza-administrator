@@ -7,7 +7,7 @@ import './order.scss';
 
 const Order = ({ order }) => {
   const dispatch = useDispatch();
-  const [orderTime, setOrderTime] = useState(Date.now() - order.startTime);
+  const [orderTime, setOrderTime] = useState(Date.now() - order.startDate);
 
   const handleReady = (order) => {
     dispatch(orderReady({ ...order, endDate: Date.now() }));
@@ -30,7 +30,7 @@ const Order = ({ order }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setOrderTime(Date.now() - order.startTime);
+      setOrderTime(Date.now() - order.startDate);
     }, 1000);
     return () => clearInterval(interval);
   });
@@ -41,14 +41,14 @@ const Order = ({ order }) => {
         <p>{order.name}</p>
       </div>
       <div>
-        <p>{formatDate(order.startTime)}</p>
+        <p>{formatDate(order.startDate)}</p>
       </div>
       <div>
         <p>{order.endDate ? formatDate(order.endDate) : 'Prepairing'}</p>
       </div>
       <div>
         {order.endDate ? (
-          <p>{formatTime(order.endDate - order.startTime)}</p>
+          <p>{formatTime(order.endDate - order.startDate)}</p>
         ) : (
           <p>{formatTime(orderTime)}</p>
         )}
