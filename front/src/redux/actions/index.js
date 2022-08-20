@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const createOrder = (order) => {
   console.log(order);
   try {
@@ -44,4 +46,17 @@ export const getProducts = () => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const deleteProduct = (_id) => {
+  return async () => {
+    try {
+      const response = await axios.delete(
+        'http://localhost:5000/api/product/' + _id
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

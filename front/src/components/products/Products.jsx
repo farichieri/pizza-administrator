@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../redux/actions';
+import { deleteProduct, getProducts } from '../../redux/actions';
 import './products.scss';
 
 const Products = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
-  // const getProducts = () => {
-  //   fetch('http://localhost:5000/api/products').then((response) =>
-  //     response
-  //       .json()
-  //       .then((data) => setProducts(data.products))
-  //       .catch((error) => console.log(error.message))
-  //   );
-  // };
+  const handleDelete = (event) => {
+    event.preventDefault();
+    dispatch(deleteProduct(event.target.value)).then((response) => {
+      alert(response.data.message);
+      dispatch(getProducts());
+    });
+  };
 
   useEffect(() => {
     dispatch(getProducts());
@@ -28,7 +27,10 @@ const Products = () => {
         products.map((product) => {
           return (
             <div className='product' key={product._id}>
-              {product.productName}
+              <p>{product.productName}</p>
+              <button value={product._id} onClick={handleDelete}>
+                x
+              </button>
             </div>
           );
         })}
