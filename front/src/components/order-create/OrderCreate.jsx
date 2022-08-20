@@ -7,6 +7,7 @@ import './orderCreate.scss';
 
 const Order = () => {
   const [orderInput, setOrderInput] = useState('');
+  const [orderAmmount, setOrderAmmount] = useState('');
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,7 +24,13 @@ const Order = () => {
     event.preventDefault();
     if (!!orderInput) {
       dispatch(
-        createOrder({ name: orderInput, startDate: Date.now(), endDate: '' })
+        createOrder({
+          orderName: orderInput,
+          startDate: Date.now(),
+          endDate: '',
+          ammount: Number(orderAmmount),
+          price: 0,
+        })
       );
       navigate('/kitchen');
     }
@@ -48,7 +55,12 @@ const Order = () => {
               );
             })}
         </select>
-        <input type='number' min='0' placeholder='ammount' />
+        <input
+          onChange={(e) => setOrderAmmount(e.target.value)}
+          type='number'
+          min='0'
+          placeholder='ammount'
+        />
         <button>Prepair</button>
       </form>
     </div>

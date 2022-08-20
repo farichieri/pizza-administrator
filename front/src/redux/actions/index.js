@@ -2,25 +2,31 @@ import axios from 'axios';
 
 export const createOrder = (order) => {
   console.log(order);
-  try {
-    return {
-      type: 'CREATE_ORDER',
-      payload: order,
-    };
-  } catch (error) {
-    console.log(error);
-  }
+  return async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/create_order',
+        order
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const orderReady = (order) => {
-  try {
-    return {
-      type: 'ORDER_READY',
-      payload: order,
-    };
-  } catch (error) {
-    console.log(error);
-  }
+  return async () => {
+    try {
+      const response = await axios.put(
+        'http://localhost:5000/api/order/' + order._id,
+        order
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const login = (payload) => {
@@ -55,6 +61,20 @@ export const deleteProduct = (_id) => {
         'http://localhost:5000/api/product/' + _id
       );
       return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get('http://localhost:5000/api/orders');
+      return dispatch({
+        type: 'GET_ORDERS',
+        payload: response.data,
+      });
     } catch (error) {
       console.log(error);
     }

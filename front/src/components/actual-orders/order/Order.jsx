@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { orderReady } from '../../../redux/actions';
+import { getOrders, orderReady } from '../../../redux/actions';
 import './order.scss';
 
 const Order = ({ order }) => {
@@ -10,7 +10,11 @@ const Order = ({ order }) => {
   const [orderTime, setOrderTime] = useState(Date.now() - order.startDate);
 
   const handleReady = (order) => {
-    dispatch(orderReady({ ...order, endDate: Date.now() }));
+    dispatch(orderReady({ ...order, endDate: Date.now() })).then((response) => {
+      if (response) {
+        dispatch(getOrders());
+      }
+    });
   };
 
   const formatDate = (date) => {
@@ -38,7 +42,7 @@ const Order = ({ order }) => {
   return (
     <section className={!order.endDate ? 'order' : 'order-done'}>
       <div>
-        <p>{order.name}</p>
+        <p>{order.orderName}</p>
       </div>
       <div>
         <p>{formatDate(order.startDate)}</p>

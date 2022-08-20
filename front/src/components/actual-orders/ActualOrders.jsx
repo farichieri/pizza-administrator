@@ -1,10 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrders } from '../../redux/actions';
 import './actualOrders.scss';
 import Order from './order/Order';
 
 const ActualOrders = () => {
-  const actualOrders = useSelector((state) => state.actualOrders);
+  const actualOrders = useSelector((state) => state.actualOrders.orders);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
 
   return (
     <div className='actual-orders'>
@@ -17,7 +24,7 @@ const ActualOrders = () => {
           <th>Time</th>
           <th>Result</th>
         </tr>
-        {actualOrders.length ? (
+        {actualOrders?.length ? (
           actualOrders.map((order, index) => (
             <Order order={order} key={index} />
           ))
