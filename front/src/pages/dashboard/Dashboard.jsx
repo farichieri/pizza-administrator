@@ -1,4 +1,5 @@
 import React from 'react';
+import ActualOrders from '../../components/actual-orders/ActualOrders';
 import Nav from '../../components/nav/Nav';
 import ProductCreate from '../../components/product-create/ProductCreate';
 import Products from '../../components/products/Products';
@@ -10,6 +11,7 @@ const Dashboard = () => {
       <Nav />
       <ProductCreate />
       <Products />
+      <ActualOrders />
     </div>
   );
 };

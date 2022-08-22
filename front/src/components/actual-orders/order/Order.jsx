@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { timeDiffCalc } from '../../../hooks/timeDiffCalc';
 import { getOrders, orderReady } from '../../../redux/actions';
 import './order.scss';
 
@@ -24,14 +25,6 @@ const Order = ({ order }) => {
     });
   };
 
-  const formatTime = (date) => {
-    return (
-      String(new Date(date).getMinutes()).padStart(2, '0') +
-      ':' +
-      String(new Date(date).getSeconds()).padStart(2, '0')
-    );
-  };
-
   useEffect(() => {
     const interval = setInterval(() => {
       setOrderTime(Date.now() - order.startDate);
@@ -45,6 +38,12 @@ const Order = ({ order }) => {
         <p>{order.orderName}</p>
       </div>
       <div>
+        <p>{order.orderProduct}</p>
+      </div>
+      <div>
+        <p>{order.ammount}</p>
+      </div>
+      <div>
         <p>{formatDate(order.startDate)}</p>
       </div>
       <div>
@@ -52,9 +51,9 @@ const Order = ({ order }) => {
       </div>
       <div>
         {order.endDate ? (
-          <p>{formatTime(order.endDate - order.startDate)}</p>
+          <p>{timeDiffCalc(order.endDate, order.startDate)}</p>
         ) : (
-          <p>{formatTime(orderTime)}</p>
+          <p>{timeDiffCalc(Date.now(), order.startDate)}</p>
         )}
       </div>
       <div>

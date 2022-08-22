@@ -21,7 +21,7 @@ const Products = () => {
   }, []);
 
   return (
-    <section className='products'>
+    <section className='products-container'>
       <h1>Actual Products:</h1>
       {products &&
         products.map((product) => {

@@ -31,7 +31,7 @@ const ProductCreate = () => {
   }, []);
 
   return (
-    <div>
+    <div className='productCreate-container'>
       <form onSubmit={createProduct}>
         <input
           type='text'

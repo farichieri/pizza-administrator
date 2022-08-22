@@ -14,15 +14,6 @@ require('dotenv/config');
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('First Request!');
-});
-
-app.get('/users', (req, res) => {
-  let users = ['Yo', 'Tu', 'El', 'Vosotros', 'Blablabla...'];
-  res.send({ users: users });
-});
-
 // USER //
 app.post('/api/create_user', async (req, res) => {
   try {
@@ -88,11 +79,29 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
+app.delete('/api/product/:_id', async (req, res) => {
+  const { _id } = req.params;
+  try {
+    Product.findByIdAndRemove(_id).then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Product with id=${_id}. Maybe Product was not found.`,
+        });
+      } else {
+        res.send({ message: 'Product was deleted successfully.' });
+      }
+    });
+  } catch (error) {
+    res.status(505).send({ message: 'Error deleting product with id=' + _id });
+  }
+});
+
 // ORDER //
 app.post('/api/create_order', async (req, res) => {
   try {
     const order = await Order.create({
       orderName: req.body.orderName,
+      orderProduct: req.body.orderProduct,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       ammount: req.body.ammount,
@@ -110,6 +119,42 @@ app.get('/api/orders', async (req, res) => {
     res.json({ orders });
   } catch (error) {
     res.send({ message: error });
+  }
+});
+
+app.put('/api/order/:_id', async (req, res) => {
+  const { _id } = req.params;
+  try {
+    Order.findByIdAndUpdate({ _id }, req.body).then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Order with id=${_id}. Maybe Order was not found.`,
+        });
+      } else {
+        res.send({ message: 'Order was updated successfully.' });
+      }
+    });
+  } catch (error) {
+    res.status(505).send({ message: 'Error updating tutorial with id=' + _id });
+  }
+});
+
+app.delete('/api/order/:_id', async (req, res) => {
+  const { _id } = req.params;
+  try {
+    Order.findByIdAndRemove({ _id }).then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Order with id=${_id}. Maybe the order was not found`,
+        });
+      } else {
+        res.send({
+          message: 'Tutorial was deleted successfully!',
+        });
+      }
+    });
+  } catch (error) {
+    res.status(500).send({ message: 'Could not delete Order with di=' + _id });
   }
 });
 

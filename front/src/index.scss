@@ -11,3 +11,24 @@ body {
   color: white;
   text-align: center;
 }
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(61, 61, 61) rgba(164, 164, 164, 0.402);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.74);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(61, 61, 61);
+  border-radius: 10px;
+}
