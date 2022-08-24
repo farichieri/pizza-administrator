@@ -38,16 +38,21 @@ const Order = ({ order }) => {
         <p>{order.orderName}</p>
       </div>
       <div>
-        <p>{order.orderProduct}</p>
+        <p>{order.order.orderProduct}</p>
       </div>
       <div>
-        <p>{order.ammount}</p>
+        <p>{order.order.ammount}</p>
       </div>
       <div>
-        <p>{formatDate(order.startDate)}</p>
+        <p>{order.order.price}</p>
       </div>
       <div>
-        <p>{order.endDate ? formatDate(order.endDate) : 'Prepairing'}</p>
+        <p className='date-text'>{formatDate(order.startDate)}</p>
+      </div>
+      <div>
+        <p className='date-text'>
+          {order.endDate ? formatDate(order.endDate) : 'Prepairing'}
+        </p>
       </div>
       <div>
         {order.endDate ? (

@@ -38,6 +38,8 @@ const ActualOrders = () => {
     setFilterState(event.target.value);
   };
 
+  console.log(actualOrders);
+
   return (
     <div className='actual-orders'>
       <select onChange={handleFilterOrders}>
@@ -51,6 +53,7 @@ const ActualOrders = () => {
           <th>Order</th>
           <th>Product</th>
           <th>Ammount</th>
+          <th>Price</th>
           <th>Start</th>
           <th>End</th>
           <th>Time</th>

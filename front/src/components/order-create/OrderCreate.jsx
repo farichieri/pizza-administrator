@@ -13,6 +13,7 @@ const Order = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [order, setOrder] = useState([]);
 
   const handleNewOrderInput = (e) => {
     e.preventDefault();
@@ -27,17 +28,34 @@ const Order = () => {
     if (!!orderInput) {
       dispatch(
         createOrder({
-          orderName: orderName,
-          orderProduct: orderInput,
           startDate: Date.now(),
           endDate: '',
-          ammount: Number(orderAmmount),
-          price: orderPrice,
+          order,
         })
       );
       navigate('/kitchen');
     }
   };
+
+  const addProductToOrder = (event) => {
+    event.preventDefault();
+    setOrder([
+      ...order,
+      {
+        orderName: orderName,
+        orderProduct: orderInput,
+        ammount: Number(orderAmmount),
+        price: orderPrice,
+      },
+    ]);
+  };
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setOrderName(event.target.value);
+  };
+
+  console.log(order);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -46,13 +64,14 @@ const Order = () => {
   return (
     <div className='order-create'>
       <h1>New order:</h1>
-      <form onSubmit={handleNewOrderSubmit}>
+      <form onSubmit={addProductToOrder}>
         <input
-          onChange={(e) => setOrderName(e.target.value)}
+          onChange={handleChange}
           type='text'
           placeholder='Order Name'
+          defaultValue={orderName}
         />
-        <select onChange={handleNewOrderInput}>
+        <select onChange={handleNewOrderInput} defaultValue={orderInput}>
           <option value='default'>Select product</option>
           {products &&
             products.map((product) => {
@@ -68,15 +87,37 @@ const Order = () => {
           type='number'
           min='0'
           placeholder='ammount'
+          defaultValue={orderAmmount}
         />
         <input
           onChange={(e) => setOrderPrice(e.target.value)}
           type='number'
           min='0'
           placeholder='price'
+          defaultValue={orderPrice}
         />
-        <button>Prepair</button>
+        <button>Add product</button>
       </form>
+      {!!order && order.length > 0 && (
+        <div className='orders-preview'>
+          <p>{order[0].orderName}</p>
+          <tr className='orders-preview-table-columns'>
+            <th>Product</th>
+            <th>Ammount</th>
+            <th>Price</th>
+          </tr>
+          {order.map((product) => {
+            return (
+              <div className='show-order'>
+                <p>{product.orderProduct}</p>
+                <p>{product.ammount}</p>
+                <p>$ {product.price}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      <button onClick={handleNewOrderSubmit}>Create order</button>
     </div>
   );
 };

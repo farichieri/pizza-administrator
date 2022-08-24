@@ -101,11 +101,9 @@ app.post('/api/create_order', async (req, res) => {
   try {
     const order = await Order.create({
       orderName: req.body.orderName,
-      orderProduct: req.body.orderProduct,
       startDate: req.body.startDate,
       endDate: req.body.endDate,
-      ammount: req.body.ammount,
-      price: req.body.price,
+      order: req.body.order,
     });
     res.send({ order });
   } catch (error) {

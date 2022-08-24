@@ -13,6 +13,15 @@
 
   div {
     width: 100%;
+
+    p {
+      word-break: break-all;
+      font-size: 1.2rem;
+    }
+
+    .date-text {
+      font-size: 1rem;
+    }
   }
 }
 
