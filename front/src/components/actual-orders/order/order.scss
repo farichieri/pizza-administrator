@@ -2,14 +2,31 @@
 .order-done {
   align-items: center;
   background-color: white;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  border-top: 5px solid black;
   color: black;
   display: flex;
   font-size: 1.5rem;
   justify-content: space-around;
   padding: .1rem 0;
   width: 100%;
+  min-width: 100vh;
+
+  .subOrders {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .subOrder {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      div {
+        min-width: 155px;
+        align-items: center;
+      }
+    }
+  }
 
   div {
     width: 100%;
@@ -21,6 +38,11 @@
 
     .date-text {
       font-size: 1rem;
+    }
+
+    button {
+      display: flex;
+      margin: auto;
     }
   }
 }

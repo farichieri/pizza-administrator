@@ -28,6 +28,7 @@ const Order = () => {
     if (!!orderInput) {
       dispatch(
         createOrder({
+          orderName: orderName,
           startDate: Date.now(),
           endDate: '',
           order,
@@ -42,7 +43,6 @@ const Order = () => {
     setOrder([
       ...order,
       {
-        orderName: orderName,
         orderProduct: orderInput,
         ammount: Number(orderAmmount),
         price: orderPrice,
@@ -100,7 +100,7 @@ const Order = () => {
       </form>
       {!!order && order.length > 0 && (
         <div className='orders-preview'>
-          <p>{order[0].orderName}</p>
+          <p>{orderName}</p>
           <tr className='orders-preview-table-columns'>
             <th>Product</th>
             <th>Ammount</th>

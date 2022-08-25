@@ -14,17 +14,19 @@ const Order = new mongoose.Schema(
       type: String,
       required: true,
     },
-    order: {
-      orderProduct: {
-        type: String,
+    order: [
+      {
+        orderProduct: {
+          type: String,
+        },
+        ammount: {
+          type: Number,
+        },
+        price: {
+          type: Number,
+        },
       },
-      ammount: {
-        type: Number,
-      },
-      price: {
-        type: Number,
-      },
-    },
+    ],
   },
   { collection: 'order-data' }
 );

@@ -14,13 +14,13 @@
     position: relative;
     background-color: rgba(128, 128, 128, 0.301);
     box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.137);
-    min-width: 100vh;
 
     .orders-table-columns {
       display: flex;
       flex-direction: row;
       background-color: rgb(145, 1, 1);
       padding: .5rem;
+      min-width: 100vh;
 
       th {
         width: 100%;

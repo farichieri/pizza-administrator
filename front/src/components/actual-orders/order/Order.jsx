@@ -37,14 +37,23 @@ const Order = ({ order }) => {
       <div>
         <p>{order.orderName}</p>
       </div>
-      <div>
-        <p>{order.order.orderProduct}</p>
-      </div>
-      <div>
-        <p>{order.order.ammount}</p>
-      </div>
-      <div>
-        <p>{order.order.price}</p>
+      <div className='subOrders'>
+        {order.order &&
+          order.order.map((subOrder) => {
+            return (
+              <div className='subOrder'>
+                <div>
+                  <p>{subOrder.orderProduct}</p>
+                </div>
+                <div>
+                  <p>{subOrder.ammount}</p>
+                </div>
+                <div>
+                  <p>{subOrder.price}</p>
+                </div>
+              </div>
+            );
+          })}
       </div>
       <div>
         <p className='date-text'>{formatDate(order.startDate)}</p>
