@@ -51,7 +51,7 @@ const ActualOrders = () => {
       <div className='orders-table'>
         <tr className='orders-table-columns'>
           <th>Order</th>
-          <th>Product</th>
+          <th style={{ width: '100%' }}>Product</th>
           <th>Ammount</th>
           <th>Price</th>
           <th>Start</th>

@@ -39,17 +39,17 @@ const Order = ({ order }) => {
       </div>
       <div className='subOrders'>
         {order.order &&
-          order.order.map((subOrder) => {
+          order.order.map((subOrder, index) => {
             return (
-              <div className='subOrder'>
-                <div>
-                  <p>{subOrder.orderProduct}</p>
+              <div key={index} className='subOrder'>
+                <div style={{ width: '100%' }}>
+                  <p>- {subOrder.orderProduct}</p>
                 </div>
                 <div>
                   <p>{subOrder.ammount}</p>
                 </div>
                 <div>
-                  <p>{subOrder.price}</p>
+                  <p>$ {subOrder.price}</p>
                 </div>
               </div>
             );
