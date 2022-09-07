@@ -1,14 +1,37 @@
 .nav {
-  height: 80px;
+  height: 35px;
   background-color: rgba(0, 0, 0, 0.692);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.164);
 
-  button {
-    margin: 5px;
-    padding: 5px 10px;
+  a {
+    width: 100%;
+  }
+
+  .nav-button,
+  .nav-button-active {
+    height: 35px;
     cursor: pointer;
+    width: 100%;
+    min-width: 5rem;
+    transition: .3s;
+    font-weight: bold;
+    background-color: rgba(145, 1, 1, 0.63);
+    border: none;
+    color: lightgray;
+    box-shadow: 0 5px 10px 0px rgba(255, 255, 255, 0.116);
+  }
+
+  .nav-button:hover,
+  .nav-button-active:hover {
+    background-color: rgb(145, 1, 1);
+    color: white;
+  }
+
+  .nav-button-active {
+    background-color: rgb(145, 1, 1);
+    filter: brightness(1.1);
   }
 }

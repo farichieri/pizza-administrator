@@ -19,15 +19,18 @@ export const timeDiffCalc = (dateFuture, dateNow) => {
   }
 
   if (hours > 0) {
-    difference += hours === 0 || hours === 1 ? `${hours} h, ` : `${hours} h, `;
+    difference += hours === 0 || hours === 1 ? `${hours} , ` : `${hours}:`;
+  } else if (hours === 0) {
+    difference += '00:';
   }
 
   if (minutes > 0) {
-    difference +=
-      minutes === 0 || hours === 1 ? `${minutes} m` : `${minutes} m, `;
+    difference += minutes === 0 || hours === 1 ? `${minutes} ` : `${minutes}:`;
+  } else if (minutes === 0) {
+    difference += '00:';
   }
-  difference +=
-    seconds === 0 || seconds === 1 ? `${seconds} s` : `${seconds} s`;
+
+  difference += seconds === 0 || seconds === 1 ? `${seconds}` : `${seconds}`;
 
   return difference;
 };

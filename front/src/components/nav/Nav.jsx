@@ -1,28 +1,56 @@
 import React from 'react';
 import './nav.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Nav = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     window.location.reload();
   };
+  const { pathname } = useLocation();
+
+  useEffect(() => {}, []);
 
   return (
     <nav className='nav'>
       <Link to='/'>
-        <button>Home</button>
+        <button
+          className={pathname === '/' ? 'nav-button-active' : 'nav-button'}
+        >
+          Home
+        </button>
       </Link>
       <Link to='/kitchen'>
-        <button>Orders</button>
+        <button
+          className={
+            pathname === '/kitchen' ? 'nav-button-active' : 'nav-button'
+          }
+        >
+          Orders
+        </button>
       </Link>
       <Link to='/cashier'>
-        <button>Create Order</button>
+        <button
+          className={
+            pathname === '/cashier' ? 'nav-button-active' : 'nav-button'
+          }
+        >
+          Create Order
+        </button>
       </Link>
       <Link to='/dashboard'>
-        <button>Dashboard</button>
+        <button
+          className={
+            pathname === '/dashboard' ? 'nav-button-active' : 'nav-button'
+          }
+        >
+          Dashboard
+        </button>
       </Link>
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleLogout} className='nav-button'>
+        Logout
+      </button>
     </nav>
   );
 };

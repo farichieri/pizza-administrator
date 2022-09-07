@@ -13,17 +13,22 @@
   .subOrders {
     width: 200%;
 
+    .multiple-subOrder,
     .subOrder {
       width: 100%;
       display: flex;
       align-items: center;
       border-top: 1px solid rgba(128, 128, 128, 0.301);
-      border-bottom: 1px solid rgba(128, 128, 128, 0.301);
+      padding: .2rem 0;
 
       div {
         width: 50%;
         align-items: center;
       }
+    }
+
+    .subOrder {
+      border: none;
     }
   }
 
@@ -32,7 +37,7 @@
 
     p {
       word-break: break-all;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .date-text {
@@ -44,8 +49,14 @@
       margin: auto;
     }
   }
+
+  // .passed-time {}
 }
 
 .order-done {
-  background-color: rgb(133, 133, 133);
+  background-color: rgb(158, 158, 158);
+
+  .done-text {
+    font-weight: bold;
+  }
 }

@@ -25,6 +25,15 @@ const Order = ({ order }) => {
     });
   };
 
+  const formatMoney = (money) => {
+    return money.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      useGrouping: true,
+      maximumSignificantDigits: 3,
+    });
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setOrderTime(Date.now() - order.startDate);
@@ -41,7 +50,12 @@ const Order = ({ order }) => {
         {order.order &&
           order.order.map((subOrder, index) => {
             return (
-              <div key={index} className='subOrder'>
+              <div
+                key={index}
+                className={
+                  order.order.length > 1 ? 'multiple-subOrder' : 'subOrder'
+                }
+              >
                 <div style={{ width: '100%' }}>
                   <p>- {subOrder.orderProduct}</p>
                 </div>
@@ -49,7 +63,7 @@ const Order = ({ order }) => {
                   <p>{subOrder.ammount}</p>
                 </div>
                 <div>
-                  <p>$ {subOrder.price}</p>
+                  <p>{formatMoney(subOrder.price)}</p>
                 </div>
               </div>
             );
@@ -63,7 +77,7 @@ const Order = ({ order }) => {
           {order.endDate ? formatDate(order.endDate) : 'Prepairing'}
         </p>
       </div>
-      <div>
+      <div className='passed-time'>
         {order.endDate ? (
           <p>{timeDiffCalc(order.endDate, order.startDate)}</p>
         ) : (
@@ -76,7 +90,7 @@ const Order = ({ order }) => {
             READY
           </button>
         ) : (
-          <p>DONE</p>
+          <p className='done-text'>DONE</p>
         )}
       </div>
     </section>
