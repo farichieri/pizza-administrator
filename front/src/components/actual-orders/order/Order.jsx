@@ -87,7 +87,7 @@ const Order = ({ order }) => {
       <div>
         {!order.endDate ? (
           <button className='ready-button' onClick={() => handleReady(order)}>
-            READY
+            LISTA
           </button>
         ) : (
           <p className='done-text'>DONE</p>

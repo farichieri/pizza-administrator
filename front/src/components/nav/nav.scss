@@ -5,6 +5,10 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.164);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
 
   a {
     width: 100%;

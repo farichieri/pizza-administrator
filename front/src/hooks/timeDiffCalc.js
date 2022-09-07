@@ -24,13 +24,19 @@ export const timeDiffCalc = (dateFuture, dateNow) => {
     difference += '00:';
   }
 
-  if (minutes > 0) {
+  if (minutes >= 0 && minutes < 10) {
+    difference += '0' + minutes + ':';
+  } else if (minutes > 0) {
     difference += minutes === 0 || hours === 1 ? `${minutes} ` : `${minutes}:`;
   } else if (minutes === 0) {
     difference += '00:';
   }
 
-  difference += seconds === 0 || seconds === 1 ? `${seconds}` : `${seconds}`;
+  if (seconds >= 0 && seconds < 10) {
+    difference += '0' + seconds;
+  } else {
+    difference += seconds === 0 || seconds === 1 ? `${seconds}` : `${seconds}`;
+  }
 
   return difference;
 };

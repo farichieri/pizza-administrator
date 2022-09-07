@@ -44,9 +44,22 @@
       font-size: 1rem;
     }
 
-    button {
+    .ready-button {
       display: flex;
       margin: auto;
+      padding: 2px 10px;
+      height: 100%;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: rgba(145, 1, 1, 0.63);
+      color: white;
+      transition: .3s;
+      letter-spacing: 2px;
+    }
+
+    .ready-button:hover {
+      background-color: rgb(145, 1, 1);
     }
   }
 

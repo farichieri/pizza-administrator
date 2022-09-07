@@ -1,5 +1,19 @@
 .productCreate-container {
   margin: auto;
-  width: 100%;
-  padding: 2rem 0;
+  width: 98%;
+  padding: 1rem 0;
+
+  form {
+    background-color: red;
+    width: 100%;
+    display: flex;
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 25%;
+    }
+  }
 }

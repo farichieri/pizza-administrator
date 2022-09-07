@@ -8,8 +8,13 @@
 
 body {
   background-color: black;
+  padding-top: 35px;
   color: white;
   text-align: center;
+}
+
+html {
+  overflow-y: overlay
 }
 
 /* Works on Firefox */
