@@ -6,7 +6,7 @@
   width: 95%;
   margin: 2rem auto;
   overflow: auto;
-  box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
+  box-shadow: var(--main-box-shadow);
   border-radius: 10px;
 
   .actual-orders-header {
@@ -36,7 +36,8 @@
     width: 100%;
     position: relative;
     background-color: rgba(128, 128, 128, 0.301);
-    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.137);
+    box-shadow: var(--main-box-shadow);
+    ;
 
     .orders-table-columns {
       display: flex;

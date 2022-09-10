@@ -9,6 +9,9 @@
   justify-content: space-around;
   width: 100%;
   min-width: 100vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   .subOrders {
     width: 200%;

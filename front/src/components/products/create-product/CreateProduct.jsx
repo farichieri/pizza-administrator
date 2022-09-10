@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProducts } from '../../redux/actions';
-import './productCreate.scss';
+import { getProducts } from '../../../redux/actions';
+import './createProduct.scss';
 
-const ProductCreate = () => {
+const CreateProduct = () => {
   const [productName, setProductName] = useState();
   const dispatch = useDispatch();
 
@@ -45,4 +45,4 @@ const ProductCreate = () => {
   );
 };
 
-export default ProductCreate;
+export default CreateProduct;

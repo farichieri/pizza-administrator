@@ -3,4 +3,27 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
+  .dashboard-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+    .dashboard-elements {
+      margin: auto;
+      width: 100%;
+      margin-left: var(--sidebar-width);
+
+
+
+      .element {
+        display: none;
+
+      }
+
+      .show-element {
+        display: inline;
+      }
+    }
+  }
 }

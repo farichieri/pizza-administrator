@@ -1,7 +1,6 @@
 import React from 'react';
 import './nav.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Nav = () => {
   const handleLogout = () => {
@@ -12,17 +11,15 @@ const Nav = () => {
   };
   const { pathname } = useLocation();
 
-  useEffect(() => {}, []);
-
   return (
     <nav className='nav'>
-      <Link to='/'>
+      {/* <Link to='/'>
         <button
           className={pathname === '/' ? 'nav-button-active' : 'nav-button'}
         >
           Home
         </button>
-      </Link>
+      </Link> */}
       <Link to='/kitchen'>
         <button
           className={

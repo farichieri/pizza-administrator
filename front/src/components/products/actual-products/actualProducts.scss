@@ -5,7 +5,8 @@
   margin: 2rem auto;
   overflow: auto;
   border-radius: 10px;
-  box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
+  box-shadow: var(--main-box-shadow);
+  max-width: 500px;
 
   h1 {
     color: var(--dark-red-color);
@@ -28,12 +29,13 @@
     button {
       text-align: center;
       cursor: pointer;
-      width: 2rem;
+      width: 1.85rem;
       border-radius: 20px 0 0 20px;
       border: none;
       background-color: red;
       font-size: 1.1rem;
       box-shadow: 0 5px 10px 1px black;
+      transition: .5s;
     }
 
     button:hover {

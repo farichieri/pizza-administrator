@@ -6,7 +6,7 @@
   width: 95%;
   margin: 1rem auto 0 auto;
   overflow: auto;
-  box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
+  box-shadow: var(--main-box-shadow);
   border-radius: 10px;
   height: 90%;
 
@@ -42,7 +42,8 @@
 
     .orders-preview {
       margin: 1rem;
-      border: 1px solid gray;
+      box-shadow: var(--main-box-shadow);
+      border: none;
 
       .orders-preview-table-columns {
         display: flex;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, getProducts } from '../../redux/actions';
-import './products.scss';
+import { deleteProduct, getProducts } from '../../../redux/actions';
+import './actualProducts.scss';
 
-const Products = () => {
+const ActualProducts = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ const Products = () => {
 
   return (
     <section className='products-container'>
-      <h1>Actual Products:</h1>
+      <h1>Productos actuales:</h1>
       {products &&
         products.map((product) => {
           return (
@@ -40,4 +40,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ActualProducts;

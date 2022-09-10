@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
+  box-shadow: var(--main-box-shadow);
   position: fixed;
   width: 100%;
   top: 0;
@@ -36,5 +36,6 @@
   .nav-button-active {
     background-color: rgb(145, 1, 1);
     filter: brightness(1.1);
+    transition: .5s;
   }
 }
