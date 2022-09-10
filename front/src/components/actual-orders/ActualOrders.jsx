@@ -42,22 +42,24 @@ const ActualOrders = () => {
 
   return (
     <div className='actual-orders'>
-      <select onChange={handleFilterOrders}>
-        <option value='all-orders'>All orders</option>
-        <option value='pending'>Pending</option>
-        <option value='done'>Done</option>
-      </select>
-      <h1>Orders:</h1>
+      <div className='actual-orders-header'>
+        <h1>Ordenes:</h1>
+        <select onChange={handleFilterOrders}>
+          <option value='all-orders'>Todas</option>
+          <option value='pending'>En preparación</option>
+          <option value='done'>Entregadas</option>
+        </select>
+      </div>
       <div className='orders-table'>
         <tr className='orders-table-columns'>
-          <th>Order</th>
-          <th style={{ width: '100%' }}>Product</th>
-          <th>Ammount</th>
-          <th>Price</th>
-          <th>Start</th>
-          <th>End</th>
-          <th>Time</th>
-          <th>Result</th>
+          <th>Orden</th>
+          <th style={{ width: '100%' }}>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Empezó</th>
+          <th>Terminó</th>
+          <th>Tiempo</th>
+          <th>Estado</th>
         </tr>
         {orders?.length ? (
           orders.map((order, index) => <Order order={order} key={index} />)

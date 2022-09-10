@@ -90,7 +90,7 @@ const Order = ({ order }) => {
             LISTA
           </button>
         ) : (
-          <p className='done-text'>DONE</p>
+          <p className='done-text'>ENTREGADA</p>
         )}
       </div>
     </section>

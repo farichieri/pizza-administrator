@@ -5,8 +5,10 @@ import { useEffect } from 'react';
 
 const Nav = () => {
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    window.location.reload();
+    if (window.confirm('Are you sure you want to logout')) {
+      localStorage.removeItem('token');
+      window.location.reload();
+    }
   };
   const { pathname } = useLocation();
 
@@ -27,7 +29,7 @@ const Nav = () => {
             pathname === '/kitchen' ? 'nav-button-active' : 'nav-button'
           }
         >
-          Orders
+          Ordenes
         </button>
       </Link>
       <Link to='/cashier'>
@@ -36,7 +38,7 @@ const Nav = () => {
             pathname === '/cashier' ? 'nav-button-active' : 'nav-button'
           }
         >
-          Create Order
+          Crear Orden
         </button>
       </Link>
       <Link to='/dashboard'>
@@ -49,7 +51,7 @@ const Nav = () => {
         </button>
       </Link>
       <button onClick={handleLogout} className='nav-button'>
-        Logout
+        Deslogearse
       </button>
     </nav>
   );

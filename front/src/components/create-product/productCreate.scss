@@ -1,0 +1,38 @@
+.productCreate-container {
+  margin: auto;
+  color: black;
+  width: 95%;
+  margin: 2rem auto;
+  overflow: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
+
+  h1 {
+    color: var(--dark-red-color);
+    font-weight: 500;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
+
+    input {
+      width: 100%;
+      padding-left: 1rem;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    input:focus::placeholder {
+      color: transparent;
+    }
+
+    button {
+      width: 25%;
+    }
+  }
+
+}

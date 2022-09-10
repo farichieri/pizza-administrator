@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.164);
+  box-shadow: 0 0 10px 1px hsla(0, 0%, 100%, 0.151);
   position: fixed;
   width: 100%;
   top: 0;
@@ -25,7 +25,6 @@
     background-color: rgba(145, 1, 1, 0.63);
     border: none;
     color: lightgray;
-    box-shadow: 0 5px 10px 0px rgba(255, 255, 255, 0.116);
   }
 
   .nav-button:hover,

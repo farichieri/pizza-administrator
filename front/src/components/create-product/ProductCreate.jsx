@@ -32,13 +32,14 @@ const ProductCreate = () => {
 
   return (
     <div className='productCreate-container'>
+      <h1>Crear un nuevo producto:</h1>
       <form onSubmit={createProduct}>
         <input
           type='text'
           placeholder='Product name'
           onChange={(e) => setProductName(e.target.value)}
         />
-        <button>Create new product</button>
+        <button>Crear</button>
       </form>
     </div>
   );

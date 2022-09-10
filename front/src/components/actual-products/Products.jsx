@@ -10,10 +10,12 @@ const Products = () => {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    dispatch(deleteProduct(event.target.value)).then((response) => {
-      alert(response.data.message);
-      dispatch(getProducts());
-    });
+    if (window.confirm('¿Seguro queres borrarlo man?')) {
+      dispatch(deleteProduct(event.target.value)).then((response) => {
+        alert(response.data.message);
+        dispatch(getProducts());
+      });
+    }
   };
 
   useEffect(() => {
