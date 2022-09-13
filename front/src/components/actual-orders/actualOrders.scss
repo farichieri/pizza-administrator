@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   width: 95%;
-  margin: 2rem auto;
+  margin: 1rem auto;
   overflow: auto;
   box-shadow: var(--main-box-shadow);
   border-radius: 10px;
@@ -19,17 +19,41 @@
     }
   }
 
-  select {
-    text-align: center;
-    border-radius: 15px;
-    border: none;
-    cursor: pointer;
-    width: 6rem;
-    appearance: none;
-  }
+  .actual-orders-filter {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: 0 1rem;
 
-  select:focus {
-    outline: none;
+    .filter-by-state {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    select {
+      background-color: rgba(255, 255, 255, 0.842);
+      border-radius: 5px;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      width: 6rem;
+      appearance: none;
+    }
+
+    input {
+      background-color: rgba(255, 255, 255, 0.842);
+      border-radius: 5px;
+      border: none;
+      padding: 0 .5rem;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    select:focus,
+    input:focus {
+      outline: none;
+    }
   }
 
   .orders-table {

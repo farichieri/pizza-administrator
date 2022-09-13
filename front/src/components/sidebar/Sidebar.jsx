@@ -1,10 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import './sidebar.scss';
 
 const Sidebar = ({ sections, elementSelected, setElementSelected }) => {
-  const [selected, setSelected] = useState(false);
-
   const elementClicked = (component) => {
     setElementSelected(component);
   };
@@ -13,6 +11,10 @@ const Sidebar = ({ sections, elementSelected, setElementSelected }) => {
     elementSelected === section
       ? 'sidebar-section-selected'
       : 'sidebar-section';
+
+  useEffect(() => {
+    elementClicked('ActualOrders');
+  }, []);
 
   return (
     <div className='sidebar-container'>

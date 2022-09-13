@@ -5,16 +5,10 @@ import './dashboard.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Products from '../../components/products/Products';
 import Reports from '../../components/reports/Reports';
+import Employees from '../../components/employees/Employees';
 
 const Dashboard = () => {
   const sections = [
-    {
-      text: 'Productos',
-      component: 'Products',
-      // Icon: TransactionsIcon,
-      // path: '/orders',
-      // itemType: 'button'
-    },
     {
       text: 'Ordenes',
       component: 'ActualOrders',
@@ -23,8 +17,22 @@ const Dashboard = () => {
       // itemType: 'button'
     },
     {
+      text: 'Productos',
+      component: 'Products',
+      // Icon: TransactionsIcon,
+      // path: '/orders',
+      // itemType: 'button'
+    },
+    {
       text: 'Reportes',
       component: 'Reports',
+      // Icon: TransactionsIcon,
+      // path: '/orders',
+      // itemType: 'button'
+    },
+    {
+      text: 'Empleados',
+      component: 'Employees',
       // Icon: TransactionsIcon,
       // path: '/orders',
       // itemType: 'button'
@@ -47,14 +55,17 @@ const Dashboard = () => {
           setElementSelected={setElementSelected}
         />
         <div className='dashboard-elements'>
-          <div className={isSelected('Products')}>
-            <Products />
-          </div>
           <div className={isSelected('ActualOrders')}>
             <ActualOrders />
           </div>
+          <div className={isSelected('Products')}>
+            <Products />
+          </div>
           <div className={isSelected('Reports')}>
             <Reports />
+          </div>
+          <div className={isSelected('Employees')}>
+            <Employees />
           </div>
         </div>
       </div>

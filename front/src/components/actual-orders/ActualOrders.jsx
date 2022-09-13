@@ -12,9 +12,11 @@ const ActualOrders = () => {
   actualOrders?.sort((a, b) => b.startDate - a.startDate);
   const [filterState, setFilterState] = useState('all-orders');
   const [orders, setOrders] = useState([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getOrders()).then(setIsloading);
   }, [dispatch]);
 
   useEffect(() => {
@@ -36,19 +38,40 @@ const ActualOrders = () => {
   const handleFilterOrders = (event) => {
     event.preventDefault();
     setFilterState(event.target.value);
+    setInput('');
   };
 
+  const searchOrder = (event) => {
+    event.preventDefault();
+    setInput(event.target.value);
+    setOrders(
+      actualOrders.filter((order) =>
+        order.orderName.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+    );
+  };
   console.log(actualOrders);
 
   return (
     <div className='actual-orders'>
       <div className='actual-orders-header'>
         <h1>Ordenes:</h1>
-        <select onChange={handleFilterOrders}>
-          <option value='all-orders'>Todas</option>
-          <option value='pending'>En preparación</option>
-          <option value='done'>Entregadas</option>
-        </select>
+        <div className='actual-orders-filter'>
+          <div className='filter-by-state'>
+            <p>Estado:</p>
+            <select onChange={handleFilterOrders}>
+              <option value='all-orders'>Todas</option>
+              <option value='pending'>En preparación</option>
+              <option value='done'>Entregadas</option>
+            </select>
+          </div>
+          <input
+            type='text'
+            placeholder='Buscar Orden'
+            value={input}
+            onChange={searchOrder}
+          />
+        </div>
       </div>
       <div className='orders-table'>
         <tr className='orders-table-columns'>
@@ -63,6 +86,8 @@ const ActualOrders = () => {
         </tr>
         {orders?.length ? (
           orders.map((order, index) => <Order order={order} key={index} />)
+        ) : !isLoading ? (
+          <p>Cargando...</p>
         ) : (
           <p>NO ORDERS</p>
         )}
