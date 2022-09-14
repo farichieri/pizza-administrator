@@ -97,7 +97,7 @@ app.delete('/api/product/:_id', async (req, res) => {
 });
 
 // ORDER //
-app.post('/api/create_order', async (req, res) => {
+app.post('/api/orders', async (req, res) => {
   try {
     const order = await Order.create({
       orderName: req.body.orderName,
@@ -120,7 +120,7 @@ app.get('/api/orders', async (req, res) => {
   }
 });
 
-app.put('/api/order/:_id', async (req, res) => {
+app.put('/api/orders/:_id', async (req, res) => {
   const { _id } = req.params;
   try {
     Order.findByIdAndUpdate({ _id }, req.body).then((data) => {
@@ -137,7 +137,7 @@ app.put('/api/order/:_id', async (req, res) => {
   }
 });
 
-app.delete('/api/order/:_id', async (req, res) => {
+app.delete('/api/orders/:_id', async (req, res) => {
   const { _id } = req.params;
   try {
     Order.findByIdAndRemove({ _id }).then((data) => {
