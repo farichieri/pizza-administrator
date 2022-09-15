@@ -5,7 +5,7 @@ export const createOrder = (order) => {
   return async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/create_order',
+        'http://localhost:5000/api/orders',
         order
       );
       return response;
@@ -19,7 +19,7 @@ export const orderReady = (order) => {
   return async () => {
     try {
       const response = await axios.put(
-        'http://localhost:5000/api/order/' + order._id,
+        'http://localhost:5000/api/orders/' + order._id,
         order
       );
       return response;
@@ -58,7 +58,7 @@ export const deleteProduct = (_id) => {
   return async () => {
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/product/' + _id
+        'http://localhost:5000/api/products/' + _id
       );
       return response;
     } catch (error) {

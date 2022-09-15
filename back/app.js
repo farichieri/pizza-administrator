@@ -7,6 +7,8 @@ const Product = require('./models/product');
 const Order = require('./models/order');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const notFound = require('./middlewares/notFound');
+const handleErrors = require('./middlewares/handleErrors');
 
 require('dotenv/config');
 
@@ -15,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // USER //
-app.post('/api/create_user', async (req, res) => {
+app.post('/api/users', async (req, res) => {
   try {
     const newPassword = await bcrypt.hash(req.body.password, 10);
     await User.create({
@@ -59,7 +61,7 @@ app.use('/api/login', async (req, res) => {
 });
 
 // PRODUCT //
-app.post('/api/create_product', async (req, res) => {
+app.post('/api/products', async (req, res) => {
   try {
     const product = await Product.create({
       productName: req.body.productName,
@@ -79,7 +81,7 @@ app.get('/api/products', async (req, res) => {
   }
 });
 
-app.delete('/api/product/:_id', async (req, res) => {
+app.delete('/api/products/:_id', async (req, res) => {
   const { _id } = req.params;
   try {
     Product.findByIdAndRemove(_id).then((data) => {
@@ -156,8 +158,15 @@ app.delete('/api/orders/:_id', async (req, res) => {
   }
 });
 
-mongoose.connect(`${process.env.DB_ACCESS}`, (req, res) => {
-  console.log('Connected to MongoDB');
+app.use(notFound);
+app.use(handleErrors);
+
+mongoose.connect(`${process.env.DB_ACCESS}`, () => {
+  try {
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(process.env.PORT, () => {
