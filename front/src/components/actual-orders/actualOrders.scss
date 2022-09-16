@@ -7,7 +7,7 @@
   margin: 1rem auto;
   overflow: auto;
   box-shadow: var(--main-box-shadow);
-  border-radius: 10px;
+  border-radius: var(--main-container-border-radius);
 
   .actual-orders-header {
     width: 100%;

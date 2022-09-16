@@ -7,7 +7,7 @@
   margin: 1rem auto 0 auto;
   overflow: auto;
   box-shadow: var(--main-box-shadow);
-  border-radius: 10px;
+  border-radius: var(--main-container-border-radius);
   height: 100%;
 
   .order-create {
@@ -25,7 +25,7 @@
     }
 
     form {
-      border-radius: 20px;
+      border-radius: 10px;
       overflow: auto;
       display: flex;
       justify-content: center;

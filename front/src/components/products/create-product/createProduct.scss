@@ -4,7 +4,7 @@
   width: 95%;
   margin: 1rem auto;
   overflow: auto;
-  border-radius: 10px;
+  border-radius: var(--main-container-border-radius);
   box-shadow: var(--main-box-shadow);
   max-width: 500px;
 

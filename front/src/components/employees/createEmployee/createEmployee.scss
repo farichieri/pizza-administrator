@@ -1,0 +1,23 @@
+.createEmployee-container {
+  display: flex;
+  flex-direction: column;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 25vh;
+
+    input {
+      padding: 0 1rem;
+    }
+
+    .isAdmin {
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      color: black;
+      padding: 0 1rem;
+    }
+  }
+}
