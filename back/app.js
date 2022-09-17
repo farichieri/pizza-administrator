@@ -17,6 +17,15 @@ app.use(cors());
 app.use(express.json());
 
 // USER //
+app.get('/api/users', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
 app.post('/api/users', async (req, res) => {
   try {
     const newPassword = await bcrypt.hash(req.body.password, 10);
@@ -26,9 +35,26 @@ app.post('/api/users', async (req, res) => {
       password: newPassword,
       isAdmin: req.body.isAdmin,
     });
-    res.json({ status: 'ok' });
+    res.json({ status: 'user created successfully' });
   } catch (error) {
     res.send({ message: error });
+  }
+});
+
+app.delete('/api/users/:_id', async (req, res) => {
+  const { _id } = req.params;
+  try {
+    await User.findByIdAndRemove(_id).then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete User with id=${_id}. Maybe User was not found.`,
+        });
+      } else {
+        res.send({ message: 'User was deleted successfully.' });
+      }
+    });
+  } catch (error) {
+    res.status(505).send({ message: 'Error deleting User with id: ' + _id });
   }
 });
 
@@ -66,7 +92,7 @@ app.post('/api/products', async (req, res) => {
     const product = await Product.create({
       productName: req.body.productName,
     });
-    res.json({ product });
+    res.json(product);
   } catch (error) {
     res.send({ message: error });
   }
@@ -75,7 +101,7 @@ app.post('/api/products', async (req, res) => {
 app.get('/api/products', async (req, res) => {
   try {
     const products = await Product.find();
-    res.json({ products });
+    res.json(products);
   } catch (error) {
     res.send({ message: error });
   }
@@ -94,7 +120,7 @@ app.delete('/api/products/:_id', async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(505).send({ message: 'Error deleting product with id=' + _id });
+    res.status(505).send({ message: 'Error deleting product with id: ' + _id });
   }
 });
 
@@ -107,7 +133,7 @@ app.post('/api/orders', async (req, res) => {
       endDate: req.body.endDate,
       order: req.body.order,
     });
-    res.send({ order });
+    res.send(order);
   } catch (error) {
     res.send({ message: error });
   }
@@ -116,7 +142,7 @@ app.post('/api/orders', async (req, res) => {
 app.get('/api/orders', async (req, res) => {
   try {
     const orders = await Order.find();
-    res.json({ orders });
+    res.json(orders);
   } catch (error) {
     res.send({ message: error });
   }
@@ -135,7 +161,9 @@ app.put('/api/orders/:_id', async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(505).send({ message: 'Error updating tutorial with id=' + _id });
+    res
+      .status(505)
+      .send({ message: 'Error updating tutorial with id: ' + _id });
   }
 });
 
@@ -154,7 +182,7 @@ app.delete('/api/orders/:_id', async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).send({ message: 'Could not delete Order with di=' + _id });
+    res.status(500).send({ message: 'Could not delete Order with id: ' + _id });
   }
 });
 

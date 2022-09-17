@@ -1,12 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProduct, getProducts } from '../../../redux/actions';
+import Loader from '../../../static/Loader/Loader';
+import NoData from '../../../static/NoData/NoData';
 import './actualProducts.scss';
 
 const ActualProducts = () => {
-  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+  const [isLoading, setIsloading] = useState(false);
 
   const handleDelete = (event) => {
     event.preventDefault();
@@ -19,23 +23,30 @@ const ActualProducts = () => {
   };
 
   useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+    dispatch(getProducts()).then(setIsloading);
+  }, [dispatch]);
 
   return (
     <section className='products-container'>
       <h1>Productos actuales:</h1>
-      {products &&
-        products.map((product) => {
-          return (
-            <div className='product' key={product._id}>
-              <p>{product.productName}</p>
-              <button value={product._id} onClick={handleDelete}>
-                x
-              </button>
-            </div>
-          );
-        })}
+      <div className='products-container-table'>
+        {products.length ? (
+          products.map((product) => {
+            return (
+              <div className='product' key={product._id}>
+                <p>{product.productName}</p>
+                <button value={product._id} onClick={handleDelete}>
+                  x
+                </button>
+              </div>
+            );
+          })
+        ) : isLoading === false ? (
+          <Loader />
+        ) : (
+          <NoData />
+        )}
+      </div>
     </section>
   );
 };

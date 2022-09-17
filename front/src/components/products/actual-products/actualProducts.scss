@@ -13,34 +13,40 @@
     font-weight: 500;
   }
 
-  .product {
-    border-top: 2px solid black;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    letter-spacing: 1px;
-    font-size: 1.1rem;
-    padding-left: .5rem;
+  .products-container-table {
+    background-color: rgba(128, 128, 128, 0.301);
+    min-height: 300px;
+    position: relative;
 
-    p {
-      margin: 0 1rem;
-    }
-
-    button {
-      text-align: center;
-      cursor: pointer;
-      width: 1.85rem;
-      border-radius: 20px 0 0 20px;
-      border: none;
-      background-color: red;
+    .product {
+      border-top: 2px solid black;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      letter-spacing: 1px;
       font-size: 1.1rem;
-      box-shadow: 0 5px 10px 1px black;
-      transition: .5s;
-    }
+      padding-left: .5rem;
 
-    button:hover {
-      background-color: black;
-      color: red;
+      p {
+        margin: 0 1rem;
+      }
+
+      button {
+        text-align: center;
+        cursor: pointer;
+        width: 1.85rem;
+        border-radius: 20px 0 0 20px;
+        border: none;
+        background-color: red;
+        font-size: 1.1rem;
+        box-shadow: 0 5px 10px 1px black;
+        transition: .5s;
+      }
+
+      button:hover {
+        background-color: black;
+        color: red;
+      }
     }
   }
 }

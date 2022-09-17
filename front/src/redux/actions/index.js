@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const createOrder = (order) => {
-  console.log(order);
   return async () => {
     try {
       const response = await axios.post(
@@ -39,12 +38,12 @@ export const login = (payload) => {
 
 export const getProducts = () => {
   try {
-    return (dispatch) => {
+    return async (dispatch) => {
       fetch('http://localhost:5000/api/products').then((response) =>
         response.json().then((products) =>
           dispatch({
             type: 'GET_PRODUCTS',
-            payload: products.products,
+            payload: products,
           })
         )
       );
@@ -68,13 +67,42 @@ export const deleteProduct = (_id) => {
 };
 
 export const getOrders = () => {
-  return async function (dispatch) {
+  return async (dispatch) => {
     try {
       const response = await axios.get('http://localhost:5000/api/orders');
       return dispatch({
         type: 'GET_ORDERS',
         payload: response.data,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getEmployees = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/users');
+      return dispatch({
+        type: 'GET_EMPLOYEES',
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postEmployee = (payload) => {
+  console.log(payload);
+  return async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/users',
+        payload
+      );
+      return response;
     } catch (error) {
       console.log(error);
     }

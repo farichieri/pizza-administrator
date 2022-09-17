@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { postEmployee } from '../../../redux/actions';
+import { useDispatch } from 'react-redux';
 import './createEmployee.scss';
 
 const CreateEmployee = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: '',
     username: '',
@@ -22,7 +25,7 @@ const CreateEmployee = () => {
 
   const createEmployee = (event) => {
     event.preventDefault();
-    console.log(input);
+    dispatch(postEmployee(input)).then((response) => console.log(response));
   };
 
   return (
@@ -31,6 +34,7 @@ const CreateEmployee = () => {
       <form onSubmit={createEmployee}>
         <input
           name='name'
+          autoComplete='off'
           value={input.name}
           onChange={handleChange}
           type='text'
@@ -38,6 +42,7 @@ const CreateEmployee = () => {
         />
         <input
           name='username'
+          autoComplete='off'
           value={input.username}
           onChange={handleChange}
           type='text'
@@ -45,6 +50,7 @@ const CreateEmployee = () => {
         />
         <input
           name='password'
+          autoComplete='off'
           value={input.password}
           onChange={handleChange}
           type='text'

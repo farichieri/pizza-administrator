@@ -1,6 +1,7 @@
 const InitialState = {
   actualOrders: [],
   products: [],
+  employees: [],
 };
 
 const rootReducer = (state = InitialState, action) => {
@@ -33,6 +34,11 @@ const rootReducer = (state = InitialState, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case 'GET_EMPLOYEES':
+      return {
+        ...state,
+        employees: action.payload,
       };
     default:
       return {

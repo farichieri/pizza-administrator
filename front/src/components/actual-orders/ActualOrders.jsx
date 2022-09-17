@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrders } from '../../redux/actions';
+import Loader from '../../static/Loader/Loader';
+import NoData from '../../static/NoData/NoData';
 import './actualOrders.scss';
 import Order from './order/Order';
 
 const ActualOrders = () => {
   const dispatch = useDispatch();
-  let actualOrders = useSelector((state) => state.actualOrders.orders);
+  let actualOrders = useSelector((state) => state.actualOrders);
   actualOrders?.sort((a, b) => b.startDate - a.startDate);
   const [filterState, setFilterState] = useState('all-orders');
   const [orders, setOrders] = useState([]);
@@ -86,10 +88,10 @@ const ActualOrders = () => {
         </tr>
         {orders?.length ? (
           orders.map((order, index) => <Order order={order} key={index} />)
-        ) : !isLoading ? (
-          <p>Cargando...</p>
+        ) : isLoading === false ? (
+          <Loader />
         ) : (
-          <p>NO ORDERS</p>
+          <NoData />
         )}
       </div>
     </div>
