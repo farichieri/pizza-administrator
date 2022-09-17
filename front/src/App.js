@@ -4,11 +4,13 @@ import Dashboard from './pages/dashboard/Dashboard';
 import Cashier from './pages/cashier/Cashier';
 import Kitchen from './pages/kitchen/Kitchen';
 import useToken from './hooks/useToken';
-import { useSelector } from 'react-redux';
+import useAdmin from './hooks/useAdmin';
+import { useState } from 'react';
 
 function App() {
   const { token, setToken } = useToken();
-  const isAdmin = useSelector((state) => state.isAdmin);
+  const [isAdmin, setIsAdmin] = useState(false);
+  useAdmin().then(setIsAdmin);
 
   if (!token) {
     return <Login setToken={setToken} />;

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProducts } from '../../../redux/actions';
 import './createProduct.scss';
+import '../../../layout/button/button.scss';
 
 const CreateProduct = () => {
   const [productName, setProductName] = useState();
@@ -21,6 +22,7 @@ const CreateProduct = () => {
     if (data) {
       alert('Product created successfully');
       dispatch(getProducts());
+      setProductName('');
     } else {
       alert('Error creating product');
     }
@@ -35,11 +37,12 @@ const CreateProduct = () => {
       <h1>Crear un nuevo producto:</h1>
       <form onSubmit={createProduct}>
         <input
+          value={productName}
           type='text'
           placeholder='Product name'
           onChange={(e) => setProductName(e.target.value)}
         />
-        <button>Crear</button>
+        <button className='create'>Crear</button>
       </form>
     </div>
   );

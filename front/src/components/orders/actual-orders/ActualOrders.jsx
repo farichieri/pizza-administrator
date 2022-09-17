@@ -7,6 +7,7 @@ import Loader from '../../../static/Loader/Loader';
 import NoData from '../../../static/NoData/NoData';
 import './actualOrders.scss';
 import Order from '../order/Order';
+import Pagination from '../../pagination/Pagination';
 
 const ActualOrders = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const ActualOrders = () => {
   const handleFilterOrders = (event) => {
     event.preventDefault();
     setFilterState(event.target.value);
+    setCurrentPage(1);
     setInput('');
   };
 
@@ -52,6 +54,19 @@ const ActualOrders = () => {
       )
     );
   };
+
+  const handlePagesAmount = (event) => {
+    event.preventDefault();
+    setOrdersPerPage(event.target.value);
+  };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ordersPerPage, setOrdersPerPage] = useState(6);
+  const indexLastOrder = currentPage * ordersPerPage;
+  const indexFirstOrder = indexLastOrder - ordersPerPage;
+  const currentOrders =
+    orders.length > 0 ? orders.slice(indexFirstOrder, indexLastOrder) : null;
+  const totalPages = Math.ceil(orders.length / ordersPerPage);
 
   return (
     <div className='actual-orders'>
@@ -72,6 +87,14 @@ const ActualOrders = () => {
             value={input}
             onChange={searchOrder}
           />
+          <div className='orders-per-page'>
+            <p>Ordenes por página</p>
+            <select onChange={handlePagesAmount}>
+              <option value='5'>5</option>
+              <option value='10'>10</option>
+              <option value='20'>15</option>
+            </select>
+          </div>
         </div>
       </div>
       <div className='orders-table'>
@@ -86,13 +109,20 @@ const ActualOrders = () => {
           <th>Estado</th>
         </tr>
         {orders?.length ? (
-          orders.map((order, index) => <Order order={order} key={index} />)
+          currentOrders.map((order, index) => (
+            <Order order={order} key={index} />
+          ))
         ) : isLoading === false ? (
           <Loader />
         ) : (
           <NoData />
         )}
       </div>
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

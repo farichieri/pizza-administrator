@@ -116,3 +116,16 @@ export const loginUser = (username, password) => {
     }
   };
 };
+
+export const deleteUser = (_id) => {
+  return async () => {
+    try {
+      const response = await axios.delete(
+        'http://localhost:5000/api/users/' + _id
+      );
+      return response.data.message;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

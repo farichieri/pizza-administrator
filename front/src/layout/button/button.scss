@@ -1,0 +1,40 @@
+.delete,
+.delete-employee,
+.create {
+  text-align: center;
+  cursor: pointer;
+  width: 1.85rem;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 5px 10px 1px black;
+  transition: .5s;
+}
+
+.delete {
+  background-color: red;
+  border-radius: 5px 0 0 5px;
+}
+
+.delete:hover,
+.delete-employee:hover {
+  background-color: black;
+  color: red;
+}
+
+.delete-employee {
+  background-color: red;
+  border-radius: 4px;
+}
+
+.create {
+  width: 100%;
+  background-color: black;
+  color: green;
+  border: 1px solid green;
+  border-radius: 4px;
+}
+
+.create:hover {
+  background-color: green;
+  color: black;
+}

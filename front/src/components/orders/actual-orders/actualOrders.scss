@@ -54,14 +54,27 @@
     input:focus {
       outline: none;
     }
+
+    .orders-per-page {
+      margin-left: auto;
+      display: flex;
+
+      select {
+        width: 3rem;
+      }
+
+      p {
+        margin-right: .5rem;
+      }
+    }
   }
 
   .orders-table {
     width: 100%;
     position: relative;
-    background-color: rgba(128, 128, 128, 0.301);
-    box-shadow: var(--main-box-shadow);
-    min-height: 300px;
+    // background-color: rgba(128, 128, 128, 0.301);
+    // box-shadow: var(--main-box-shadow);
+    min-height: 500px;
 
     .orders-table-columns {
       display: flex;

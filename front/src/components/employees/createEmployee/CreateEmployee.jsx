@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { postEmployee } from '../../../redux/actions';
+import { getEmployees, postEmployee } from '../../../redux/actions';
 import { useDispatch } from 'react-redux';
 import './createEmployee.scss';
 
@@ -25,7 +25,9 @@ const CreateEmployee = () => {
 
   const createEmployee = (event) => {
     event.preventDefault();
-    dispatch(postEmployee(input)).then((response) => console.log(response));
+    dispatch(postEmployee(input)).then((response) => {
+      if (response) dispatch(getEmployees());
+    });
   };
 
   return (
@@ -66,7 +68,7 @@ const CreateEmployee = () => {
             type='checkbox'
           />
         </div>
-        <button>Crear</button>
+        <button className='create'>Crear</button>
       </form>
     </div>
   );

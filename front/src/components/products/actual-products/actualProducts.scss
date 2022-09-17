@@ -1,4 +1,4 @@
-.products-container {
+.actualProducts-container {
   margin: auto;
   color: black;
   width: 95%;
@@ -13,9 +13,9 @@
     font-weight: 500;
   }
 
-  .products-container-table {
-    background-color: rgba(128, 128, 128, 0.301);
-    min-height: 300px;
+  .actualProducts-table {
+    // background-color: rgba(128, 128, 128, 0.301);
+    min-height: 60px;
     position: relative;
 
     .product {
@@ -29,23 +29,6 @@
 
       p {
         margin: 0 1rem;
-      }
-
-      button {
-        text-align: center;
-        cursor: pointer;
-        width: 1.85rem;
-        border-radius: 20px 0 0 20px;
-        border: none;
-        background-color: red;
-        font-size: 1.1rem;
-        box-shadow: 0 5px 10px 1px black;
-        transition: .5s;
-      }
-
-      button:hover {
-        background-color: black;
-        color: red;
       }
     }
   }

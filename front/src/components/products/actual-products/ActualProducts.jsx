@@ -6,6 +6,7 @@ import { deleteProduct, getProducts } from '../../../redux/actions';
 import Loader from '../../../static/Loader/Loader';
 import NoData from '../../../static/NoData/NoData';
 import './actualProducts.scss';
+import '../../../layout/button/button.scss';
 
 const ActualProducts = () => {
   const dispatch = useDispatch();
@@ -27,15 +28,19 @@ const ActualProducts = () => {
   }, [dispatch]);
 
   return (
-    <section className='products-container'>
+    <section className='actualProducts-container'>
       <h1>Productos actuales:</h1>
-      <div className='products-container-table'>
+      <div className='actualProducts-table'>
         {products.length ? (
           products.map((product) => {
             return (
               <div className='product' key={product._id}>
                 <p>{product.productName}</p>
-                <button value={product._id} onClick={handleDelete}>
+                <button
+                  className='delete'
+                  value={product._id}
+                  onClick={handleDelete}
+                >
                   x
                 </button>
               </div>

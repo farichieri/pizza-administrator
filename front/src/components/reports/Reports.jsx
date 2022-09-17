@@ -52,7 +52,7 @@ const data = [
 const Reports = () => {
   return (
     <div className='reports-container'>
-      <ResponsiveContainer>
+      <ResponsiveContainer height='95%' width='95%'>
         <AreaChart
           data={data}
           margin={{
