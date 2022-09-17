@@ -1,5 +1,14 @@
 .actualEmployees-container {
-  background-color: red;
+  background-color: rgba(128, 128, 128, 0.63);
   margin: 1rem;
-  width: 100%;
+  width: 95%;
+
+  .actualEmployees-header {
+    background-color: gray;
+    width: 100%;
+  }
+
+  th {
+    width: 100vh;
+  }
 }

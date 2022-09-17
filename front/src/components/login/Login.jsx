@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
 import './login.scss';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/actions';
 
 const Login = ({ setToken }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const dispatch = useDispatch();
 
-  async function loginUser(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch('http://localhost:5000/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
+    await dispatch(loginUser(username, password)).then((loginData) => {
+      console.log('loginData2', loginData);
+      if (loginData.user) {
+        dispatch({ type: 'IS_ADMIN', payload: loginData.isAdmin });
+        localStorage.setItem('user', JSON.stringify(loginData));
+        setToken(loginData.user);
+        alert('Login successful');
+      } else {
+        alert('Please check your username and password');
+      }
     });
-    const data = await response.json();
-    if (data.user) {
-      setToken(data.user);
-      alert('Login successful');
-    } else {
-      alert('Please check your username and password');
-    }
-    console.log(data);
-  }
+  };
 
   return (
     <div className='login'>
       <h1>Please, Login:</h1>
-      <form onSubmit={loginUser}>
+      <form onSubmit={handleSubmit}>
         <input type='text' onChange={(e) => setUserName(e.target.value)} />
         <input type='password' onChange={(e) => setPassword(e.target.value)} />
         <button type='submit'>Enter</button>

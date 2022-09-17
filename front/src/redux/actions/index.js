@@ -28,14 +28,6 @@ export const orderReady = (order) => {
   };
 };
 
-export const login = (payload) => {
-  try {
-    console.log(payload);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const getProducts = () => {
   try {
     return async (dispatch) => {
@@ -95,7 +87,6 @@ export const getEmployees = () => {
 };
 
 export const postEmployee = (payload) => {
-  console.log(payload);
   return async () => {
     try {
       const response = await axios.post(
@@ -103,6 +94,23 @@ export const postEmployee = (payload) => {
         payload
       );
       return response;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const loginUser = (username, password) => {
+  return async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      return await response.json();
     } catch (error) {
       console.log(error);
     }

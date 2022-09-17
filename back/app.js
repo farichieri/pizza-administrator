@@ -80,7 +80,13 @@ app.use('/api/login', async (req, res) => {
       },
       'secret123'
     );
-    return res.json({ status: 'ok', user: token });
+    return res.json({
+      status: 'ok',
+      user: token,
+      isAdmin: user.isAdmin,
+      password: user.password,
+      username: user.username,
+    });
   } else {
     return res.json({ status: 'error', user: false });
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './cashier.scss';
-import OrderCreate from '../../components/create-order/OrderCreate';
 import Nav from '../../components/navbar/Nav';
+import OrderCreate from '../../components/orders/create-order/OrderCreate';
 
 const Cashier = () => {
   return (

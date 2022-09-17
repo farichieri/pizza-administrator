@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ActualOrders from '../../components/actual-orders/ActualOrders';
 import Nav from '../../components/navbar/Nav';
 import './dashboard.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Products from '../../components/products/Products';
 import Reports from '../../components/reports/Reports';
 import Employees from '../../components/employees/Employees';
+import ActualOrders from '../../components/orders/actual-orders/ActualOrders';
 
 const Dashboard = () => {
   const sections = [

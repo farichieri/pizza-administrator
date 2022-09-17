@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createOrder, getProducts } from '../../redux/actions';
+import { createOrder, getProducts } from '../../../redux/actions';
 import './orderCreate.scss';
 
 const Order = () => {
@@ -54,8 +54,6 @@ const Order = () => {
     event.preventDefault();
     setOrderName(event.target.value);
   };
-
-  console.log(order);
 
   useEffect(() => {
     dispatch(getProducts());

@@ -1,6 +1,6 @@
 import React from 'react';
-import ActualOrders from '../../components/actual-orders/ActualOrders';
 import Nav from '../../components/navbar/Nav';
+import ActualOrders from '../../components/orders/actual-orders/ActualOrders';
 import './kitchen.scss';
 
 const Kitchen = () => {

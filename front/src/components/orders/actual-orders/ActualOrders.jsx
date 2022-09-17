@@ -2,11 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrders } from '../../redux/actions';
-import Loader from '../../static/Loader/Loader';
-import NoData from '../../static/NoData/NoData';
+import { getOrders } from '../../../redux/actions';
+import Loader from '../../../static/Loader/Loader';
+import NoData from '../../../static/NoData/NoData';
 import './actualOrders.scss';
-import Order from './order/Order';
+import Order from '../order/Order';
 
 const ActualOrders = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,6 @@ const ActualOrders = () => {
       )
     );
   };
-  console.log(actualOrders);
 
   return (
     <div className='actual-orders'>

@@ -18,8 +18,19 @@ const ActualEmployees = () => {
 
   return (
     <div className='actualEmployees-container'>
+      <tr className='actualEmployees-header'>
+        <th>Nombre</th>
+        <th>Usuario</th>
+        <th>Admin</th>
+      </tr>
       {employees ? (
-        employees.map((employee) => <p>{employee.username}</p>)
+        employees.map((employee) => (
+          <tr>
+            <th>{employee.name}</th>
+            <th>{employee.username}</th>
+            <th>{employee.isAdmin ? 'SI' : 'NO'}</th>
+          </tr>
+        ))
       ) : isLoading ? (
         <Loader />
       ) : (
