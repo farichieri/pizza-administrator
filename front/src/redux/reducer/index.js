@@ -2,7 +2,7 @@ const InitialState = {
   actualOrders: [],
   products: [],
   employees: [],
-  isAdmin: false,
+  user: {},
 };
 
 const rootReducer = (state = InitialState, action) => {
@@ -41,10 +41,10 @@ const rootReducer = (state = InitialState, action) => {
         ...state,
         employees: action.payload,
       };
-    case 'IS_ADMIN':
+    case 'LOGIN':
       return {
         ...state,
-        isAdmin: action.payload,
+        user: action.payload,
       };
     default:
       return {

@@ -25,14 +25,23 @@
     }
 
     form {
-      border-radius: 10px;
       overflow: auto;
       display: flex;
       justify-content: center;
 
       input {
-        padding: 0 5px;
+        text-align: center;
+        width: 7rem;
       }
+
+      .amount {
+        width: 4rem;
+      }
+
+      .price {
+        width: 4rem;
+      }
+
 
       input:focus,
       select:focus {

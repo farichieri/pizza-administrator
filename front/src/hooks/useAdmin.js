@@ -5,7 +5,7 @@ export default async function useAdmin() {
   const dispatch = useDispatch();
   const userStorage = localStorage.getItem('user');
   const user = JSON.parse(userStorage);
-  dispatch({ type: 'IS_ADMIN', payload: user.isAdmin });
+  dispatch({ type: 'LOGIN', payload: user });
 
   return user.isAdmin;
 }

@@ -1,5 +1,6 @@
 .delete,
 .delete-employee,
+.delete-product-order,
 .create {
   text-align: center;
   cursor: pointer;
@@ -16,12 +17,14 @@
 }
 
 .delete:hover,
-.delete-employee:hover {
+.delete-employee:hover,
+.delete-product-order:hover {
   background-color: black;
   color: red;
 }
 
-.delete-employee {
+.delete-employee,
+.delete-product-order {
   background-color: red;
   border-radius: 4px;
 }

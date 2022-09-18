@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { formatMoney } from '../../../hooks/formatMoney';
 import { timeDiffCalc } from '../../../hooks/timeDiffCalc';
 import { getOrders, orderReady } from '../../../redux/actions';
 import './order.scss';
@@ -22,15 +23,6 @@ const Order = ({ order }) => {
     return new Date(date).toLocaleString('es-AR', {
       dateStyle: 'short',
       timeStyle: 'medium',
-    });
-  };
-
-  const formatMoney = (money) => {
-    return money.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      useGrouping: true,
-      maximumSignificantDigits: 3,
     });
   };
 

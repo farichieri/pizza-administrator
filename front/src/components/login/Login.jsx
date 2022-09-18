@@ -14,7 +14,7 @@ const Login = ({ setToken }) => {
     await dispatch(loginUser(username, password)).then((loginData) => {
       console.log('loginData2', loginData);
       if (loginData.user) {
-        dispatch({ type: 'IS_ADMIN', payload: loginData.isAdmin });
+        dispatch({ type: 'LOGIN', payload: loginData });
         localStorage.setItem('user', JSON.stringify(loginData));
         setToken(loginData.user);
         alert('Login successful');

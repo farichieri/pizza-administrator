@@ -15,7 +15,8 @@
   }
 
   .nav-button,
-  .nav-button-active {
+  .nav-button-active,
+  .nav-user {
     height: 35px;
     cursor: pointer;
     width: 100%;
@@ -25,6 +26,10 @@
     background-color: rgba(145, 1, 1, 0.63);
     border: none;
     color: lightgray;
+  }
+
+  .nav-user {
+    width: 25%;
   }
 
   .nav-button:hover,

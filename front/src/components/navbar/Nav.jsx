@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Nav = () => {
-  const isAdmin = useSelector((state) => state.isAdmin);
+  const user = useSelector((state) => state.user);
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to logout')) {
       localStorage.removeItem('token');
@@ -34,7 +34,7 @@ const Nav = () => {
           Crear Orden
         </button>
       </Link>
-      {isAdmin === true && (
+      {user.isAdmin === true && (
         <Link to='/dashboard'>
           <button
             className={
@@ -48,6 +48,7 @@ const Nav = () => {
       <button onClick={handleLogout} className='nav-button'>
         Deslogearse
       </button>
+      <button className='nav-user'>Usuario: {user.username}</button>
     </nav>
   );
 };

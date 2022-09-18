@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { formatMoney } from '../../../hooks/formatMoney';
 import { createOrder, getProducts } from '../../../redux/actions';
 import './orderCreate.scss';
+import { v4 as uuid } from 'uuid';
 
 const Order = () => {
   const [orderInput, setOrderInput] = useState('');
@@ -18,14 +20,16 @@ const Order = () => {
   const handleNewOrderInput = (e) => {
     e.preventDefault();
     if (e.target.value === 'default') {
+      setOrderInput('');
       return;
+    } else {
+      setOrderInput(e.target.value);
     }
-    setOrderInput(e.target.value);
   };
 
   const handleNewOrderSubmit = (event) => {
     event.preventDefault();
-    if (!!orderInput) {
+    if (order.length) {
       dispatch(
         createOrder({
           orderName: orderName,
@@ -40,19 +44,36 @@ const Order = () => {
 
   const addProductToOrder = (event) => {
     event.preventDefault();
-    setOrder([
-      ...order,
-      {
-        orderProduct: orderInput,
-        ammount: Number(orderAmmount),
-        price: orderPrice,
-      },
-    ]);
+    if (orderInput && orderAmmount && orderName && orderPrice) {
+      const newId = uuid();
+      setOrder([
+        ...order,
+        {
+          unique_id: newId,
+          orderProduct: orderInput,
+          ammount: Number(orderAmmount),
+          price: orderPrice,
+        },
+      ]);
+      setOrderInput('');
+      setOrderAmmount('');
+      setOrderPrice('');
+    } else {
+      alert('Ingrese todas las opciones necesarias para agregar el producto');
+    }
   };
+
+  console.log(order);
 
   const handleChange = (event) => {
     event.preventDefault();
     setOrderName(event.target.value);
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const id = event.target.id;
+    setOrder(order.filter((product) => product.unique_id !== id));
   };
 
   useEffect(() => {
@@ -68,9 +89,9 @@ const Order = () => {
             onChange={handleChange}
             type='text'
             placeholder='Nombre de la orden'
-            defaultValue={orderName}
+            value={orderName}
           />
-          <select onChange={handleNewOrderInput} defaultValue={orderInput}>
+          <select onChange={handleNewOrderInput} value={orderInput}>
             <option value='default'>Producto</option>
             {products &&
               products.map((product) => {
@@ -86,16 +107,18 @@ const Order = () => {
             type='number'
             min='0'
             placeholder='Cantidad'
-            defaultValue={orderAmmount}
+            value={orderAmmount}
+            className='amount'
           />
           <input
             onChange={(e) => setOrderPrice(e.target.value)}
             type='number'
             min='0'
             placeholder='Precio'
-            defaultValue={orderPrice}
+            value={orderPrice}
+            className='price'
           />
-          <button>Agregar producto</button>
+          <button className='create'>Agregar producto</button>
         </form>
         {!!order && order.length > 0 && (
           <div className='orders-preview'>
@@ -104,21 +127,31 @@ const Order = () => {
               <th>Producto</th>
               <th>Cantidad</th>
               <th>Precio</th>
+              <th>Eliminar</th>
             </tr>
             {order.map((product) => {
               return (
-                <div className='show-order'>
+                <div key={product.unique_id} className='show-order'>
                   <p>{product.orderProduct}</p>
                   <p>{product.ammount}</p>
-                  <p>$ {product.price}</p>
+                  <p>{formatMoney(product.price)}</p>
+                  <p>
+                    <button
+                      id={product.unique_id}
+                      onClick={handleDelete}
+                      className='delete-product-order'
+                    >
+                      x
+                    </button>
+                  </p>
                 </div>
               );
             })}
+            <button onClick={handleNewOrderSubmit} className='create'>
+              Crear la orden
+            </button>
           </div>
         )}
-        <button onClick={handleNewOrderSubmit} className='create-button'>
-          Crear la orden
-        </button>
       </div>
     </div>
   );
