@@ -12,11 +12,15 @@ const Order = ({ order }) => {
   const [orderTime, setOrderTime] = useState(Date.now() - order.startDate);
 
   const handleReady = (order) => {
-    dispatch(orderReady({ ...order, endDate: Date.now() })).then((response) => {
-      if (response) {
-        dispatch(getOrders());
-      }
-    });
+    if (window.confirm('¿Seguro que está lista?')) {
+      dispatch(orderReady({ ...order, endDate: Date.now() })).then(
+        (response) => {
+          if (response) {
+            dispatch(getOrders());
+          }
+        }
+      );
+    }
   };
 
   const formatDate = (date) => {

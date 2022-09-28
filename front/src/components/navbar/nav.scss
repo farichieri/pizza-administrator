@@ -30,6 +30,10 @@
 
   .nav-user {
     width: 25%;
+    cursor: initial;
+    width: fit-content;
+    min-width: fit-content;
+    padding: 0 10px;
   }
 
   .nav-button:hover,

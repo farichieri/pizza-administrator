@@ -1,4 +1,4 @@
-.reports-container {
+.graphic-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   width: 95%;
   margin: 1rem auto;
   overflow: auto;
-  // box-shadow: var(--main-box-shadow);
-  // border-radius: var(--main-container-border-radius);
+  box-shadow: var(--main-box-shadow);
+  border-radius: var(--main-container-border-radius);
   height: 90vh;
 }
