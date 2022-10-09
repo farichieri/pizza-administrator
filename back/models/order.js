@@ -18,15 +18,26 @@ const Order = new mongoose.Schema(
       {
         orderProduct: {
           type: String,
+          required: true,
         },
         ammount: {
           type: Number,
+          required: true,
         },
         price: {
           type: Number,
+          required: true,
         },
       },
     ],
+    orderTotalValue: {
+      type: Number,
+      required: true,
+    },
+    userCreator: {
+      type: String,
+      required: true,
+    },
   },
   { collection: 'order-data' }
 );

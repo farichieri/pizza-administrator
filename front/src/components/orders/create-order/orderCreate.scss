@@ -42,6 +42,9 @@
         width: 4rem;
       }
 
+      select {
+        min-width: 10rem;
+      }
 
       input:focus,
       select:focus {

@@ -138,6 +138,11 @@ app.post('/api/orders', async (req, res) => {
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       order: req.body.order,
+      orderTotalValue: req.body.order.reduce(
+        (prev, next) => prev + Number(next.price),
+        0
+      ),
+      userCreator: req.body.userCreator,
     });
     res.send(order);
   } catch (error) {
@@ -189,6 +194,36 @@ app.delete('/api/orders/:_id', async (req, res) => {
     });
   } catch (error) {
     res.status(500).send({ message: 'Could not delete Order with id: ' + _id });
+  }
+});
+
+// REPORTS
+
+app.get('/api/reports', async (req, res) => {
+  try {
+    const orders = await Order.find();
+    const totalValue = orders.reduce(
+      (prev, next) => prev + Number(next.orderTotalValue),
+      0
+    );
+    res.json(totalValue);
+  } catch (error) {
+    res.send({ message: error });
+  }
+});
+
+app.get('/api/reports/dates', async (req, res) => {
+  try {
+    const startDate = Number(req.query.startDate);
+    const endDate = Number(req.query.endDate);
+
+    const orders = await Order.find();
+    const ordersSearched = orders.filter(
+      (order) => order.startDate >= startDate && order.endDate <= endDate
+    );
+    res.json(ordersSearched);
+  } catch (error) {
+    res.send({ message: error });
   }
 });
 

@@ -16,6 +16,7 @@ const Order = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [order, setOrder] = useState([]);
+  const userCreator = useSelector((state) => state.user.username);
 
   const handleNewOrderInput = (e) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const Order = () => {
           startDate: Date.now(),
           endDate: '',
           order,
+          userCreator: userCreator,
         })
       );
       navigate('/kitchen');
@@ -62,8 +64,6 @@ const Order = () => {
       alert('Ingrese todas las opciones necesarias para agregar el producto');
     }
   };
-
-  console.log(order);
 
   const handleChange = (event) => {
     event.preventDefault();

@@ -24,7 +24,10 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         <span>{'<'}</span>
       </div>
       {pageNumbers.map((page) => (
-        <div className='page' onClick={() => selectPage('select', page)}>
+        <div
+          className={page === currentPage ? 'currentPage' : 'page'}
+          onClick={() => selectPage('select', page)}
+        >
           <span>{page}</span>
         </div>
       ))}
