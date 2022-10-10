@@ -49,7 +49,18 @@ const data = [
   },
 ];
 
-const Graphic = () => {
+const Graphic = ({ reportData, rangeDate }) => {
+  console.log(new Date(1665356291967).toISOString().slice(5, 10));
+
+  console.log({ rangeDate });
+
+  const formatReport = (report) => {
+    let dayOrders = report.filter((order) =>
+      new Date(order.startDate).toISOString().slice(5, 10)
+    );
+  };
+  console.log(reportData);
+
   return (
     <div className='graphic-container'>
       <ResponsiveContainer height='95%' width='95%'>

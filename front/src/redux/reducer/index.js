@@ -3,6 +3,7 @@ const InitialState = {
   products: [],
   employees: [],
   user: {},
+  report: [],
 };
 
 const rootReducer = (state = InitialState, action) => {
@@ -45,6 +46,11 @@ const rootReducer = (state = InitialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case 'GET_ORDERS_BETWEEN_DATES':
+      return {
+        ...state,
+        report: action.payload,
       };
     default:
       return {

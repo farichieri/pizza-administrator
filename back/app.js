@@ -212,14 +212,14 @@ app.get('/api/reports', async (req, res) => {
   }
 });
 
-app.get('/api/reports/dates', async (req, res) => {
+app.get('/api/report/dates', async (req, res) => {
   try {
     const startDate = Number(req.query.startDate);
     const endDate = Number(req.query.endDate);
 
     const orders = await Order.find();
     const ordersSearched = orders.filter(
-      (order) => order.startDate >= startDate && order.endDate <= endDate
+      (order) => order.startDate >= startDate && order.startDate <= endDate
     );
     res.json(ordersSearched);
   } catch (error) {

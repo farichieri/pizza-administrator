@@ -129,3 +129,19 @@ export const deleteUser = (_id) => {
     }
   };
 };
+
+export const getOrdersBetweenDates = (startDate, endDate) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/report/dates?startDate=${startDate}&endDate=${endDate}`
+      );
+      return dispatch({
+        type: 'GET_ORDERS_BETWEEN_DATES',
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
