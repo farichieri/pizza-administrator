@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const Order = new mongoose.Schema(
   {
     startDate: {
-      type: Number,
+      type: String,
       required: true,
     },
     endDate: {
-      type: Number,
+      type: String,
       required: false,
     },
     orderName: {

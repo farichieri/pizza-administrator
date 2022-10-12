@@ -214,8 +214,8 @@ app.get('/api/reports', async (req, res) => {
 
 app.get('/api/report/dates', async (req, res) => {
   try {
-    const startDate = Number(req.query.startDate);
-    const endDate = Number(req.query.endDate);
+    const startDate = req.query.startDate;
+    const endDate = req.query.endDate;
 
     const orders = await Order.find();
     const ordersSearched = orders.filter(

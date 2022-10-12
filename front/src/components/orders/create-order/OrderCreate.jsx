@@ -34,7 +34,7 @@ const Order = () => {
       dispatch(
         createOrder({
           orderName: orderName,
-          startDate: Date.now(),
+          startDate: new Date().toISOString(),
           endDate: '',
           order,
           userCreator: userCreator,

@@ -17,6 +17,8 @@ const Reports = () => {
     endDate: dateNow,
   });
 
+  console.log(rangeDate);
+
   const [showReport, setShowReport] = useState(
     <Graphic reportData={reportData} rangeDate={rangeDate} />
   );

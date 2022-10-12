@@ -3,23 +3,25 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { formatMoney } from '../../../hooks/formatMoney';
+import { formatTime } from '../../../hooks/formatTime';
 import { timeDiffCalc } from '../../../hooks/timeDiffCalc';
 import { getOrders, orderReady } from '../../../redux/actions';
 import './order.scss';
 
 const Order = ({ order }) => {
   const dispatch = useDispatch();
-  const [orderTime, setOrderTime] = useState(Date.now() - order.startDate);
+  const startDateMs = formatTime(order.startDate);
+  const [orderTime, setOrderTime] = useState(Date.now() - startDateMs);
 
   const handleReady = (order) => {
     if (window.confirm('¿Seguro que está lista?')) {
-      dispatch(orderReady({ ...order, endDate: Date.now() })).then(
-        (response) => {
-          if (response) {
-            dispatch(getOrders());
-          }
+      dispatch(
+        orderReady({ ...order, endDate: new Date().toISOString() })
+      ).then((response) => {
+        if (response) {
+          dispatch(getOrders());
         }
-      );
+      });
     }
   };
 
@@ -32,7 +34,7 @@ const Order = ({ order }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setOrderTime(Date.now() - order.startDate);
+      setOrderTime(Date.now() - startDateMs);
     }, 1000);
     return () => clearInterval(interval);
   });
@@ -68,7 +70,7 @@ const Order = ({ order }) => {
           })}
       </div>
       <div>
-        <p className='date-text'>{formatDate(order.startDate)}</p>
+        <p className='date-text'>{formatDate(startDateMs)}</p>
       </div>
       <div>
         <p className='date-text'>
@@ -77,9 +79,9 @@ const Order = ({ order }) => {
       </div>
       <div className='passed-time'>
         {order.endDate ? (
-          <p>{timeDiffCalc(order.endDate, order.startDate)}</p>
+          <p>{timeDiffCalc(formatTime(order.endDate), startDateMs)}</p>
         ) : (
-          <p>{timeDiffCalc(Date.now(), order.startDate)}</p>
+          <p>{timeDiffCalc(Date.now(), startDateMs)}</p>
         )}
       </div>
       <div>

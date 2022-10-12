@@ -8,11 +8,14 @@ import NoData from '../../../static/NoData/NoData';
 import './actualOrders.scss';
 import Order from '../order/Order';
 import Pagination from '../../pagination/Pagination';
+import { formatTime } from '../../../hooks/formatTime';
 
 const ActualOrders = () => {
   const dispatch = useDispatch();
   let actualOrders = useSelector((state) => state.actualOrders);
-  actualOrders?.sort((a, b) => b.startDate - a.startDate);
+  actualOrders?.sort(
+    (a, b) => formatTime(a.startDate) - formatTime(b.startDate)
+  );
   const [filterState, setFilterState] = useState('all-orders');
   const [orders, setOrders] = useState([]);
   const [input, setInput] = useState('');
@@ -28,7 +31,7 @@ const ActualOrders = () => {
         setOrders(actualOrders);
         break;
       case 'pending':
-        setOrders(actualOrders?.filter((order) => order.endDate === null));
+        setOrders(actualOrders?.filter((order) => order.endDate === ''));
         break;
       case 'done':
         setOrders(actualOrders?.filter((order) => order.endDate));

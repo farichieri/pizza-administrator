@@ -30,8 +30,8 @@ const DateRangePicker = ({ rangeDate, setRangeDate }) => {
   useEffect(() => {
     dispatch(
       getOrdersBetweenDates(
-        new Date(rangeDate.startDate).getTime(),
-        new Date(rangeDate.endDate).getTime()
+        new Date(rangeDate.startDate).toISOString(),
+        new Date(rangeDate.endDate).toISOString()
       )
     );
   }, [rangeDate.endDate, rangeDate.startDate]);
