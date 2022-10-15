@@ -23,7 +23,7 @@ const DateRangePicker = ({ rangeDate, setRangeDate }) => {
 
   const arStartDate = new Date(
     new Date(rangeDate.startDate).setHours(
-      new Date(rangeDate.startDate).getHours() - 3
+      new Date(rangeDate.startDate).getHours() + 3
     )
   ).toISOString();
   const arEndDate = new Date(
@@ -32,6 +32,10 @@ const DateRangePicker = ({ rangeDate, setRangeDate }) => {
 
   useEffect(() => {
     dispatch(getOrdersBetweenDates(arStartDate, arEndDate));
+    localStorage.setItem(
+      'between-dates',
+      JSON.stringify({ startDate: arStartDate, endDate: arEndDate })
+    );
   }, [rangeDate.endDate, rangeDate.startDate]);
 
   return (

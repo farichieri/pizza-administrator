@@ -31,16 +31,18 @@ const Order = () => {
   const handleNewOrderSubmit = (event) => {
     event.preventDefault();
     if (order.length) {
-      dispatch(
-        createOrder({
-          orderName: orderName,
-          startDate: new Date().toISOString(),
-          endDate: '',
-          order,
-          userCreator: userCreator,
-        })
-      );
-      navigate('/kitchen');
+      if (window.confirm('¿Crear orden?')) {
+        dispatch(
+          createOrder({
+            orderName: orderName,
+            startDate: new Date().toISOString(),
+            endDate: '',
+            order,
+            userCreator: userCreator,
+          })
+        );
+        navigate('/kitchen');
+      }
     }
   };
 
@@ -120,38 +122,40 @@ const Order = () => {
           />
           <button className='create'>Agregar producto</button>
         </form>
-        {!!order && order.length > 0 && (
-          <div className='orders-preview'>
-            <p>{orderName}</p>
-            <tr className='orders-preview-table-columns'>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>Eliminar</th>
-            </tr>
-            {order.map((product) => {
-              return (
-                <div key={product.unique_id} className='show-order'>
-                  <p>{product.orderProduct}</p>
-                  <p>{product.ammount}</p>
-                  <p>{formatMoney(product.price)}</p>
-                  <p>
-                    <button
-                      id={product.unique_id}
-                      onClick={handleDelete}
-                      className='delete-product-order'
-                    >
-                      x
-                    </button>
-                  </p>
-                </div>
-              );
-            })}
-            <button onClick={handleNewOrderSubmit} className='create'>
-              Crear la orden
-            </button>
-          </div>
-        )}
+        {/* {!!order && order.length > 0 && ( */}
+        <div className='orders-preview'>
+          <p className='orders-preview-orderName'>
+            {orderName ? orderName : '-'}
+          </p>
+          <tr className='orders-preview-table-columns'>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Eliminar</th>
+          </tr>
+          {order.map((product) => {
+            return (
+              <div key={product.unique_id} className='show-order'>
+                <p>{product.orderProduct}</p>
+                <p>{product.ammount}</p>
+                <p>{formatMoney(product.price)}</p>
+                <p>
+                  <button
+                    id={product.unique_id}
+                    onClick={handleDelete}
+                    className='delete-product-order'
+                  >
+                    x
+                  </button>
+                </p>
+              </div>
+            );
+          })}
+          <button onClick={handleNewOrderSubmit} className='create'>
+            Crear la orden
+          </button>
+        </div>
+        {/* )} */}
       </div>
     </div>
   );

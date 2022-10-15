@@ -19,7 +19,8 @@ export const timeDiffCalc = (dateFuture, dateNow) => {
   }
 
   if (hours > 0) {
-    difference += hours === 0 || hours === 1 ? `${hours} , ` : `${hours}:`;
+    difference +=
+      hours === 0 || (hours > 0 && hours < 10) ? `0${hours}:` : `${hours}:`;
   } else if (hours === 0) {
     difference += '00:';
   }
@@ -27,7 +28,7 @@ export const timeDiffCalc = (dateFuture, dateNow) => {
   if (minutes >= 0 && minutes < 10) {
     difference += '0' + minutes + ':';
   } else if (minutes > 0) {
-    difference += minutes === 0 || hours === 1 ? `${minutes} ` : `${minutes}:`;
+    difference += minutes === 0 || hours === 1 ? `${minutes}:` : `${minutes}:`;
   } else if (minutes === 0) {
     difference += '00:';
   }
@@ -35,7 +36,7 @@ export const timeDiffCalc = (dateFuture, dateNow) => {
   if (seconds >= 0 && seconds < 10) {
     difference += '0' + seconds;
   } else {
-    difference += seconds === 0 || seconds === 1 ? `${seconds}` : `${seconds}`;
+    difference += seconds === 0 || seconds === 1 ? `0${seconds}` : `${seconds}`;
   }
 
   return difference;

@@ -25,6 +25,7 @@
     }
 
     form {
+      border-radius: 20px 0 0 20px;
       overflow: auto;
       display: flex;
       justify-content: center;
@@ -56,19 +57,25 @@
       margin: 1rem;
       box-shadow: var(--main-box-shadow);
       border: none;
+      border-radius: 10px 10px 0 0;
+      overflow: auto;
 
       .orders-preview-table-columns {
         display: flex;
         flex-direction: row;
         background-color: rgb(145, 1, 1);
+        border: 1px solid black;
 
         th {
           width: 100%;
         }
       }
 
-      p {
-        background-color: green;
+      .orders-preview-orderName {
+        color: green;
+        background-color: black;
+        border: 1px solid black;
+        border-radius: 10px 10px 0 0;
       }
 
       .show-order {

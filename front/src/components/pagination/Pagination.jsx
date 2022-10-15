@@ -21,8 +21,9 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   return (
     <div className='pagination'>
       <div className='page' onClick={() => selectPage('substract')}>
-        <span>{'<'}</span>
+        {totalPages > 1 && currentPage !== 1 && <span>{'<'}</span>}
       </div>
+
       {pageNumbers.map((page) => (
         <div
           key={page}
@@ -33,7 +34,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
         </div>
       ))}
       <div className='page' onClick={() => selectPage('add')}>
-        <span>{'>'}</span>
+        {totalPages > 1 && currentPage !== totalPages && <span>{'>'}</span>}
       </div>
     </div>
   );

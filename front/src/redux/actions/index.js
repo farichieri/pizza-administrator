@@ -130,7 +130,16 @@ export const deleteUser = (_id) => {
   };
 };
 
-export const getOrdersBetweenDates = (startDate, endDate) => {
+export const getOrdersBetweenDates = (start, end) => {
+  if (!localStorage.getItem('between-dates')) {
+    localStorage.setItem(
+      'between-dates',
+      JSON.stringify({ startDate: start, endDate: end })
+    );
+  }
+  const { startDate, endDate } = JSON.parse(
+    localStorage.getItem('between-dates')
+  );
   return async (dispatch) => {
     try {
       const response = await axios.get(

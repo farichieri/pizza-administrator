@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { formatMoney } from '../../../hooks/formatMoney';
 import { formatTime } from '../../../hooks/formatTime';
 import { timeDiffCalc } from '../../../hooks/timeDiffCalc';
-import { getOrders, orderReady } from '../../../redux/actions';
+import { getOrdersBetweenDates, orderReady } from '../../../redux/actions';
 import './order.scss';
 
 const Order = ({ order }) => {
@@ -19,7 +19,7 @@ const Order = ({ order }) => {
         orderReady({ ...order, endDate: new Date().toISOString() })
       ).then((response) => {
         if (response) {
-          dispatch(getOrders());
+          dispatch(getOrdersBetweenDates());
         }
       });
     }
@@ -31,7 +31,6 @@ const Order = ({ order }) => {
       timeStyle: 'medium',
     });
   };
-
   useEffect(() => {
     const interval = setInterval(() => {
       setOrderTime(Date.now() - startDateMs);
@@ -74,7 +73,7 @@ const Order = ({ order }) => {
       </div>
       <div>
         <p className='date-text'>
-          {order.endDate ? formatDate(order.endDate) : 'Prepairing'}
+          {order.endDate ? formatDate(order.endDate) : '-'}
         </p>
       </div>
       <div className='passed-time'>
