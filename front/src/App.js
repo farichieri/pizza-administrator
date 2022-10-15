@@ -10,7 +10,8 @@ import { useState } from 'react';
 function App() {
   const { token, setToken } = useToken();
   const [isAdmin, setIsAdmin] = useState(false);
-  useAdmin().then(setIsAdmin);
+  const [isLoading, setIsLoading] = useState(true);
+  useAdmin().then(setIsAdmin).then(setIsLoading);
 
   if (!token) {
     return <Login setToken={setToken} />;
@@ -21,27 +22,27 @@ function App() {
     }
     return children;
   };
-
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Navigate to='/kitchen' />} />
-          <Route path='/cashier' element={<Cashier />} />
-          <Route path='/kitchen' element={<Kitchen />} />
-          <Route
-            path='/dashboard'
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path='*' element={<p>There's nothing here</p>} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+  if (!isLoading)
+    return (
+      <div>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Navigate to='/kitchen' />} />
+            <Route path='/cashier' element={<Cashier />} />
+            <Route path='/kitchen' element={<Kitchen />} />
+            <Route
+              path='/dashboard'
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path='*' element={<p>There's nothing here</p>} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    );
 }
 
 export default App;

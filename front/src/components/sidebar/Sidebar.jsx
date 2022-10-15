@@ -22,6 +22,7 @@ const Sidebar = ({ sections, elementSelected, setElementSelected }) => {
         sections.map((section) => {
           return (
             <span
+              key={section.component}
               onClick={() => elementClicked(section.component)}
               component={section.component}
               className={isSelected(section.component)}

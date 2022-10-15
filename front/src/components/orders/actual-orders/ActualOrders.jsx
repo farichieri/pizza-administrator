@@ -9,12 +9,13 @@ import './actualOrders.scss';
 import Order from '../order/Order';
 import Pagination from '../../pagination/Pagination';
 import { formatTime } from '../../../hooks/formatTime';
+import DateRangePicker from '../../dateRangePicker/DateRangePicker';
 
 const ActualOrders = () => {
   const dispatch = useDispatch();
   let actualOrders = useSelector((state) => state.actualOrders);
   actualOrders?.sort(
-    (a, b) => formatTime(a.startDate) - formatTime(b.startDate)
+    (a, b) => formatTime(b.startDate) - formatTime(a.startDate)
   );
   const [filterState, setFilterState] = useState('all-orders');
   const [orders, setOrders] = useState([]);
@@ -24,6 +25,13 @@ const ActualOrders = () => {
   useEffect(() => {
     dispatch(getOrders()).then(setIsloading);
   }, [dispatch]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(getOrders());
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     switch (filterState) {
@@ -64,12 +72,22 @@ const ActualOrders = () => {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [ordersPerPage, setOrdersPerPage] = useState(6);
+  const [ordersPerPage, setOrdersPerPage] = useState(5);
   const indexLastOrder = currentPage * ordersPerPage;
   const indexFirstOrder = indexLastOrder - ordersPerPage;
   const currentOrders =
     orders.length > 0 ? orders.slice(indexFirstOrder, indexLastOrder) : null;
   const totalPages = Math.ceil(orders.length / ordersPerPage);
+
+  const dateNow = new Date().toISOString().slice(0, 10);
+  const dateNowMinusSevenDays = new Date(new Date() - 7 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 10);
+
+  const [rangeDate, setRangeDate] = useState({
+    startDate: dateNowMinusSevenDays,
+    endDate: dateNow,
+  });
 
   return (
     <div className='actual-orders'>
@@ -90,12 +108,14 @@ const ActualOrders = () => {
             value={input}
             onChange={searchOrder}
           />
+          <DateRangePicker rangeDate={rangeDate} setRangeDate={setRangeDate} />
           <div className='orders-per-page'>
             <p>Ordenes por página</p>
             <select onChange={handlePagesAmount}>
               <option value='5'>5</option>
               <option value='10'>10</option>
-              <option value='20'>15</option>
+              <option value='20'>20</option>
+              <option value='30'>30</option>
             </select>
           </div>
         </div>

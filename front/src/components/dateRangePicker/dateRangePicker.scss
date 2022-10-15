@@ -1,3 +1,24 @@
 .dateRangePicker-container {
   display: flex;
+
+  div {
+    display: flex;
+    padding: 0 0 0 .5rem;
+    border-radius: 10px;
+    align-items: center;
+    overflow: auto;
+
+    input {
+      outline: none;
+      user-select: none;
+    }
+
+    input::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+    }
+
+    p {
+      margin: 0 1rem;
+    }
+  }
 }

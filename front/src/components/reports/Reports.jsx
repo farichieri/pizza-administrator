@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import DateRangePicker from '../dateRangePicker/DateRangePicker';
@@ -17,22 +18,24 @@ const Reports = () => {
     endDate: dateNow,
   });
 
-  console.log(rangeDate);
+  const [reportSelected, setReportSelected] = useState('Graphic');
 
   const [showReport, setShowReport] = useState(
     <Graphic reportData={reportData} rangeDate={rangeDate} />
   );
 
-  const reportSelected = (value) => {
-    if (value === 'Graphic') {
-      setShowReport(<Graphic reportData={reportData} rangeDate={rangeDate} />);
-    } else {
-      setShowReport('');
+  useEffect(() => {
+    switch (reportSelected) {
+      case 'Graphic':
+        setShowReport(
+          <Graphic reportData={reportData} rangeDate={rangeDate} />
+        );
+        break;
     }
-  };
+  }, [rangeDate, reportSelected, reportData]);
 
   const handleFilterReport = (e) => {
-    reportSelected(e.target.value);
+    setReportSelected(e.target.value);
   };
 
   return (

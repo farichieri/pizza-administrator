@@ -8,76 +8,67 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import { formatMoney } from '../../../../hooks/formatMoney';
 import './graphic.scss';
 
-const data = [
-  {
-    name: 'Lunes',
-    uv: 100,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Martes',
-    uv: 150,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Miércoles',
-    uv: 200,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Jueves',
-    uv: 300,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Sábado',
-    uv: 250,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Domingo',
-    uv: 300,
-    pv: 3800,
-    amt: 2500,
-  },
-];
-
 const Graphic = ({ reportData, rangeDate }) => {
-  console.log(new Date(1665356291967).toISOString().slice(5, 10));
-
-  console.log({ rangeDate });
-
-  const formatReport = (report) => {
-    let dayOrders = report.filter((order) =>
-      new Date(order.startDate).toISOString().slice(5, 10)
-    );
+  const getDateArray = (start, end) => {
+    let arr = new Array();
+    let dt = new Date(start);
+    while (dt <= end) {
+      arr.push(new Date(dt));
+      dt.setDate(dt.getDate() + 1);
+    }
+    return arr;
   };
-  console.log(reportData);
+
+  const argDate = (date) => {
+    return new Date(
+      new Date(date).setHours(new Date(date).getHours() - 3)
+    ).toISOString();
+  };
+
+  const testingDateArray = getDateArray(
+    new Date(rangeDate.startDate),
+    new Date(rangeDate.endDate)
+  );
+
+  const newData = testingDateArray.map((day) => {
+    return {
+      date: new Date(day).toISOString().slice(0, 10),
+      Facturado: reportData.reduce((acc, next) => {
+        if (
+          new Date(day).toISOString().slice(0, 10) ===
+          argDate(next.startDate).slice(0, 10)
+        )
+          return acc + next.orderTotalValue;
+        else return acc;
+      }, 0),
+    };
+  });
 
   return (
     <div className='graphic-container'>
-      <ResponsiveContainer height='95%' width='95%'>
+      <ResponsiveContainer height='95%' width='100%'>
         <AreaChart
-          data={data}
+          data={newData}
           margin={{
             top: 10,
-            right: 30,
-            left: 0,
+            right: 35,
+            left: 30,
             bottom: 0,
           }}
         >
           <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='name' />
-          <YAxis />
-          <Tooltip />
-          <Area type='monotone' dataKey='uv' stroke='#8884d8' fill='#8884d8' />
+          <XAxis dataKey='date' />
+          <YAxis tickFormatter={(value) => formatMoney(value)} />
+          <Tooltip formatter={(value) => formatMoney(value)} />
+          <Area
+            type='monotone'
+            dataKey='Facturado'
+            stroke='#8884d8'
+            fill='#8884d8'
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

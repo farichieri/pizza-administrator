@@ -41,7 +41,7 @@ const Order = ({ order }) => {
 
   return (
     <section className={!order.endDate ? 'order' : 'order-done'}>
-      <div>
+      <div className='orderName'>
         <p>
           <strong>{order.orderName}</strong>
         </p>

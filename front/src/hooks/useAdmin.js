@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../redux/actions';
 
 export default async function useAdmin() {
   const dispatch = useDispatch();

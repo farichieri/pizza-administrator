@@ -38,7 +38,7 @@ const ActualEmployees = () => {
       </tr>
       {employees ? (
         employees.map((employee) => (
-          <tr>
+          <tr key={employee.username}>
             <th>{employee.name}</th>
             <th>{employee.username}</th>
             <th>{employee.isAdmin ? 'SI' : 'NO'}</th>

@@ -1,16 +1,10 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getOrdersBetweenDates } from '../../redux/actions';
 import './dateRangePicker.scss';
 
 const DateRangePicker = ({ rangeDate, setRangeDate }) => {
   const dispatch = useDispatch();
-
-  // const [date, setDate] = useState({
-  //   startDate: rangeDate.dateNowMinusSevenDays,
-  //   endDate: rangeDate.dateNow,
-  // });
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -27,29 +21,34 @@ const DateRangePicker = ({ rangeDate, setRangeDate }) => {
     }
   };
 
+  const arStartDate = new Date(
+    new Date(rangeDate.startDate).setHours(
+      new Date(rangeDate.startDate).getHours() - 3
+    )
+  ).toISOString();
+  const arEndDate = new Date(
+    new Date(rangeDate.endDate).setUTCHours(20, 59, 59, 999)
+  ).toISOString();
+
   useEffect(() => {
-    dispatch(
-      getOrdersBetweenDates(
-        new Date(rangeDate.startDate).toISOString(),
-        new Date(rangeDate.endDate).toISOString()
-      )
-    );
+    dispatch(getOrdersBetweenDates(arStartDate, arEndDate));
   }, [rangeDate.endDate, rangeDate.startDate]);
 
   return (
     <div className='dateRangePicker-container'>
       <div>
-        <p>Desde</p>
+        <p>Desde:</p>
         <input
           onChange={handleChange}
           type='date'
           id='start'
+          min='2022-10-01'
           name='start'
           value={rangeDate.startDate}
         />
       </div>
       <div>
-        <p>Hasta</p>
+        <p>Hasta:</p>
         <input
           onChange={handleChange}
           type='date'
