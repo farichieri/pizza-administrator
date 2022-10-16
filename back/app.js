@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const notFound = require('./middlewares/notFound');
 const handleErrors = require('./middlewares/handleErrors');
-
+const port = process.env.PORT || 5000;
 require('dotenv/config');
 
 //middlewares
@@ -238,6 +238,6 @@ mongoose.connect(`${process.env.DB_ACCESS}`, () => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Listening to port: ${process.env.PORT}`);
+app.listen(port || 5000, () => {
+  console.log(`Listening to port: ${port}!`);
 });
