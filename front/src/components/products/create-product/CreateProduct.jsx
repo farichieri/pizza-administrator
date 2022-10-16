@@ -12,7 +12,7 @@ const CreateProduct = () => {
 
   const createProduct = async (event) => {
     event.preventDefault();
-    const body = JSON.stringify({ productName });
+    const body = { productName };
     const response = await axios.post('/api/products', body);
     const data = response.data;
     if (data) {
