@@ -87,16 +87,12 @@ export const postEmployee = (payload) => {
 };
 
 export const loginUser = (username, password) => {
+  const body = { username, password };
   return async () => {
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      return await response.json();
+      const response = await axios.post('/api/login', body);
+      console.log(response);
+      return response.data;
     } catch (error) {
       console.log(error);
     }
