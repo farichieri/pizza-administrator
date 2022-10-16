@@ -16,6 +16,10 @@ require('dotenv/config');
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Welcome to Pizza-Administrator Backend');
+});
+
 // USER //
 app.get('/api/users', async (req, res) => {
   try {
