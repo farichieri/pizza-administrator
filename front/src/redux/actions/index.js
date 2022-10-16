@@ -3,10 +3,7 @@ import axios from 'axios';
 export const createOrder = (order) => {
   return async () => {
     try {
-      const response = await axios.post(
-        'http://localhost:5000/api/orders',
-        order
-      );
+      const response = await axios.post('/api/orders', order);
       return response;
     } catch (error) {
       console.log(error);
@@ -17,10 +14,7 @@ export const createOrder = (order) => {
 export const orderReady = (order) => {
   return async () => {
     try {
-      const response = await axios.put(
-        'http://localhost:5000/api/orders/' + order._id,
-        order
-      );
+      const response = await axios.put('/api/orders/' + order._id, order);
       return response;
     } catch (error) {
       console.log(error);
@@ -31,14 +25,11 @@ export const orderReady = (order) => {
 export const getProducts = () => {
   try {
     return async (dispatch) => {
-      fetch('http://localhost:5000/api/products').then((response) =>
-        response.json().then((products) =>
-          dispatch({
-            type: 'GET_PRODUCTS',
-            payload: products,
-          })
-        )
-      );
+      const response = await axios.get('/api/products');
+      dispatch({
+        type: 'GET_PRODUCTS',
+        payload: response.data,
+      });
     };
   } catch (error) {
     console.log(error);
@@ -48,9 +39,7 @@ export const getProducts = () => {
 export const deleteProduct = (_id) => {
   return async () => {
     try {
-      const response = await axios.delete(
-        'http://localhost:5000/api/products/' + _id
-      );
+      const response = await axios.delete('/api/products/' + _id);
       return response;
     } catch (error) {
       console.log(error);
@@ -61,7 +50,7 @@ export const deleteProduct = (_id) => {
 export const getOrders = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/orders');
+      const response = await axios.get('/api/orders');
       return dispatch({
         type: 'GET_ORDERS',
         payload: response.data,
@@ -75,7 +64,7 @@ export const getOrders = () => {
 export const getEmployees = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users');
+      const response = await axios.get('/api/users');
       return dispatch({
         type: 'GET_EMPLOYEES',
         payload: response.data,
@@ -89,10 +78,7 @@ export const getEmployees = () => {
 export const postEmployee = (payload) => {
   return async () => {
     try {
-      const response = await axios.post(
-        'http://localhost:5000/api/users',
-        payload
-      );
+      const response = await axios.post('/api/users', payload);
       return response;
     } catch (error) {
       console.log(error);
@@ -103,7 +89,7 @@ export const postEmployee = (payload) => {
 export const loginUser = (username, password) => {
   return async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,9 +106,7 @@ export const loginUser = (username, password) => {
 export const deleteUser = (_id) => {
   return async () => {
     try {
-      const response = await axios.delete(
-        'http://localhost:5000/api/users/' + _id
-      );
+      const response = await axios.delete('/api/users/' + _id);
       return response.data.message;
     } catch (error) {
       console.log(error);
@@ -143,7 +127,7 @@ export const getOrdersBetweenDates = (start, end) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/report/dates?startDate=${startDate}&endDate=${endDate}`
+        `/api/report/dates?startDate=${startDate}&endDate=${endDate}`
       );
       return dispatch({
         type: 'GET_ORDERS_BETWEEN_DATES',

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { getProducts } from '../../../redux/actions';
 import './createProduct.scss';
 import '../../../layout/button/button.scss';
+import axios from 'axios';
 
 const CreateProduct = () => {
   const [productName, setProductName] = useState();
@@ -11,14 +12,9 @@ const CreateProduct = () => {
 
   const createProduct = async (event) => {
     event.preventDefault();
-    const response = await fetch('http://localhost:5000/api/products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ productName }),
-    });
-    const data = await response.json();
+    const body = JSON.stringify({ productName });
+    const response = await axios.post('/api/products', body);
+    const data = response.data;
     if (data) {
       alert('Product created successfully');
       dispatch(getProducts());
