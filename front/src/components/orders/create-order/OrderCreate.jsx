@@ -85,7 +85,6 @@ const Order = () => {
   return (
     <div className='order-create-container'>
       <div className='order-create'>
-        <h1>Crear una nueva orden:</h1>
         <form onSubmit={addProductToOrder}>
           <input
             onChange={handleChange}

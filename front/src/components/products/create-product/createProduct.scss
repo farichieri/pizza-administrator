@@ -1,12 +1,11 @@
 .productCreate-container {
   margin: auto;
   color: black;
-  width: 95%;
-  margin: 1rem auto;
-  overflow: auto;
+  width: 100%;
+  max-width: 700px;
+  margin: 1rem;
   border-radius: var(--main-container-border-radius);
   box-shadow: var(--main-box-shadow);
-  max-width: 500px;
 
   h1 {
     color: var(--dark-red-color);

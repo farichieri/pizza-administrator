@@ -106,7 +106,7 @@
 
       .orders-table-content {
         overflow: auto;
-        height: 100%;
+        height: calc(100vh - var(--main-padding-top) - 9.45rem);
         max-height: calc(100vh - var(--main-padding-top) - 9.45rem);
       }
     }

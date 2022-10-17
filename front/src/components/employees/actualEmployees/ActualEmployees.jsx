@@ -36,7 +36,7 @@ const ActualEmployees = () => {
         <th>Admin</th>
         <th>Eliminar</th>
       </tr>
-      {employees ? (
+      {employees.length ? (
         employees.map((employee) => (
           <tr key={employee.username}>
             <th>{employee.name}</th>

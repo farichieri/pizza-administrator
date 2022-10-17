@@ -41,13 +41,13 @@ const Reports = () => {
   return (
     <div className='reports-container'>
       <div className='reports-container-header'>
-        <DateRangePicker rangeDate={rangeDate} setRangeDate={setRangeDate} />
         <p>Estado:</p>
         <select onChange={handleFilterReport}>
           <option value='Graphic'>Facturación</option>
           {/* <option value='pending'>En preparación</option> */}
           {/* <option value='done'>Entregadas</option> */}
         </select>
+        <DateRangePicker rangeDate={rangeDate} setRangeDate={setRangeDate} />
       </div>
       {showReport}
     </div>

@@ -23,17 +23,18 @@ export const orderReady = (order) => {
 };
 
 export const getProducts = () => {
-  try {
-    return async (dispatch) => {
+  return async (dispatch) => {
+    try {
       const response = await axios.get('/api/products');
-      dispatch({
+      console.log('response', response);
+      return dispatch({
         type: 'GET_PRODUCTS',
         payload: response.data,
       });
-    };
-  } catch (error) {
-    console.log(error);
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const deleteProduct = (_id) => {

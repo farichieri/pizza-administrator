@@ -1,12 +1,14 @@
 .actualProducts-container {
   margin: auto;
   color: black;
-  width: 95%;
-  margin: 2rem auto;
+  max-width: 700px;
+  width: 100%;
+  margin: 1rem;
+  margin-top: 2rem;
   overflow: auto;
   border-radius: var(--main-container-border-radius);
   box-shadow: var(--main-box-shadow);
-  max-width: 500px;
+  height: 100%;
 
   h1 {
     color: var(--dark-red-color);
