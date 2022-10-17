@@ -1,15 +1,15 @@
 import React from 'react';
 import Nav from '../../components/navbar/Nav';
 import ActualOrders from '../../components/orders/actual-orders/ActualOrders';
-import './kitchen.scss';
+import './orders.scss';
 
-const Kitchen = () => {
+const Orders = () => {
   return (
-    <div className='kitchen'>
+    <div className='orders'>
       <Nav />
       <ActualOrders />
     </div>
   );
 };
 
-export default Kitchen;
+export default Orders;

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/login/Login';
 import Dashboard from './pages/dashboard/Dashboard';
-import Cashier from './pages/cashier/Cashier';
-import Kitchen from './pages/kitchen/Kitchen';
+import OrdersCreate from './pages/ordersCreate/OrdersCreate';
+import Orders from './pages/orders/Orders';
 import useToken from './hooks/useToken';
 import useAdmin from './hooks/useAdmin';
 import { useState } from 'react';
@@ -27,9 +27,9 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Navigate to='/kitchen' />} />
-            <Route path='/cashier' element={<Cashier />} />
-            <Route path='/kitchen' element={<Kitchen />} />
+            <Route path='/' element={<Navigate to='/orders' />} />
+            <Route path='/ordersCreate' element={<OrdersCreate />} />
+            <Route path='/orders' element={<Orders />} />
             <Route
               path='/dashboard'
               element={

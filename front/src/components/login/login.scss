@@ -2,8 +2,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  margin: auto;
   justify-content: center;
+  min-height: calc(100vh - var(--main-padding-top));
 
   form {
     align-items: center;
@@ -12,7 +13,8 @@
     justify-content: center;
 
     input {
-      width: 150px;
+      padding: 0 .5rem;
+      width: 8rem;
       margin: 5px;
       background-color: transparent;
       color: white;
@@ -23,8 +25,19 @@
     button {
       cursor: pointer;
       margin: 5px;
-      width: 150px;
+      width: 8rem;
       border-radius: 5px;
+      transition: 1s;
+      border: none;
+    }
+
+    button:hover {
+      background-color: var(--dark-red-color);
+      box-shadow: var(--main-box-shadow);
+    }
+
+    button:active {
+      filter: brightness(2);
     }
   }
 }

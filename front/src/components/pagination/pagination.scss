@@ -5,7 +5,8 @@
   justify-content: center;
   background-color: black;
   padding: .5rem 0;
-  border-top: 1px solid rgba(211, 211, 211, 0.315);
+  border-top: 1px solid rgba(211, 211, 211, 0.116);
+  min-width: 100vh;
 
   .page,
   .currentPage {

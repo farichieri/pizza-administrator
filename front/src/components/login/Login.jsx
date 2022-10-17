@@ -11,25 +11,37 @@ const Login = ({ setToken }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await dispatch(loginUser(username, password)).then((loginData) => {
-      console.log('loginData2', loginData);
-      if (loginData.user) {
-        dispatch({ type: 'LOGIN', payload: loginData });
-        localStorage.setItem('user', JSON.stringify(loginData));
-        setToken(loginData.user);
-        alert('Login successful');
-      } else {
-        alert('Please check your username and password');
-      }
-    });
+    if (username && password) {
+      await dispatch(loginUser(username, password)).then((loginData) => {
+        console.log(loginData);
+        if (loginData.user) {
+          dispatch({ type: 'LOGIN', payload: loginData });
+          localStorage.setItem('user', JSON.stringify(loginData));
+          setToken(loginData.user);
+          alert(`Bienvenido ${username}!`);
+        } else {
+          alert('Usuario o contraseña inválidos');
+        }
+      });
+    } else {
+      alert('Por favor escriba su usuario y contraseña');
+    }
   };
 
   return (
     <div className='login'>
       <h1>Please, Login:</h1>
       <form onSubmit={handleSubmit}>
-        <input type='text' onChange={(e) => setUserName(e.target.value)} />
-        <input type='password' onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type='text'
+          placeholder='Usuario'
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
+          type='password'
+          placeholder='Contraseña'
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type='submit'>Enter</button>
       </form>
     </div>

@@ -16,19 +16,19 @@ const Nav = () => {
 
   return (
     <nav className='nav'>
-      <Link to='/kitchen'>
+      <Link to='/orders'>
         <button
           className={
-            pathname === '/kitchen' ? 'nav-button-active' : 'nav-button'
+            pathname === '/orders' ? 'nav-button-active' : 'nav-button'
           }
         >
           Ordenes
         </button>
       </Link>
-      <Link to='/cashier'>
+      <Link to='/ordersCreate'>
         <button
           className={
-            pathname === '/cashier' ? 'nav-button-active' : 'nav-button'
+            pathname === '/ordersCreate' ? 'nav-button-active' : 'nav-button'
           }
         >
           Crear Orden

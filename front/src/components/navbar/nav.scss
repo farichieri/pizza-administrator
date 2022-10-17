@@ -1,5 +1,5 @@
 .nav {
-  height: 35px;
+  height: var(--main-padding-top);
   background-color: rgba(0, 0, 0, 0.692);
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@
   .nav-button,
   .nav-button-active,
   .nav-user {
-    height: 35px;
+    height: var(--main-padding-top);
     cursor: pointer;
     width: 100%;
     min-width: 5rem;

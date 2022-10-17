@@ -49,7 +49,7 @@ const Graphic = ({ reportData, rangeDate }) => {
 
   return (
     <div className='graphic-container'>
-      <ResponsiveContainer height='95%' width='100%'>
+      <ResponsiveContainer height='90%' width='95%'>
         <AreaChart
           data={newData}
           margin={{

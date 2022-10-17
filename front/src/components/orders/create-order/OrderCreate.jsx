@@ -41,7 +41,7 @@ const Order = () => {
             userCreator: userCreator,
           })
         );
-        navigate('/kitchen');
+        navigate('/orders');
       }
     }
   };

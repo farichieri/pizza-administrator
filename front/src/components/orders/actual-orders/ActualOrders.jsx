@@ -32,7 +32,7 @@ const ActualOrders = () => {
 
   const [rangeDate, setRangeDate] = useState({
     startDate:
-      location.pathname === '/kitchen'
+      location.pathname === '/orders'
         ? dateNowMinusDays(2)
         : dateNowMinusDays(7),
     endDate: dateNow,
@@ -111,66 +111,71 @@ const ActualOrders = () => {
 
   return (
     <div className='actual-orders'>
-      <div className='actual-orders-header'>
-        <h1>Ordenes:</h1>
-        <div className='actual-orders-filter'>
-          <div className='filter-by-state'>
-            <p>Estado:</p>
-            <select onChange={handleFilterOrders}>
-              <option value='all-orders'>Todas</option>
-              <option value='pending'>En preparación</option>
-              <option value='done'>Entregadas</option>
-            </select>
-          </div>
-          <input
-            type='text'
-            placeholder='Buscar Orden'
-            value={input}
-            onChange={searchOrder}
-          />
-          {location.pathname === '/dashboard' && (
-            <DateRangePicker
-              rangeDate={rangeDate}
-              setRangeDate={setRangeDate}
+      <div className='actual-orders-container'>
+        <div className='actual-orders-header'>
+          <div className='actual-orders-filter'>
+            <div className='filter-by-state'>
+              <p>Estado:</p>
+              <select onChange={handleFilterOrders}>
+                <option value='all-orders'>Todas</option>
+                <option value='pending'>En preparación</option>
+                <option value='done'>Entregadas</option>
+              </select>
+            </div>
+            <input
+              type='text'
+              placeholder='Buscar Orden'
+              value={input}
+              onChange={searchOrder}
             />
-          )}
-          <div className='orders-per-page'>
-            <p>Ordenes por página</p>
-            <select onChange={handlePagesAmount} value={ordersPerPage}>
-              <option value='5'>5</option>
-              <option value='10'>10</option>
-              <option value='20'>20</option>
-              <option value='30'>30</option>
-            </select>
+            {location.pathname === '/dashboard' && (
+              <DateRangePicker
+                rangeDate={rangeDate}
+                setRangeDate={setRangeDate}
+              />
+            )}
+            <div className='orders-per-page'>
+              <p>Ordenes por página</p>
+              <select onChange={handlePagesAmount} value={ordersPerPage}>
+                <option value='5'>5</option>
+                <option value='10'>10</option>
+                <option value='20'>20</option>
+                <option value='30'>30</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className='orders-table'>
+          <tr className='orders-table-columns'>
+            <th>Orden</th>
+            <th style={{ width: '100%' }}>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Empezó</th>
+            <th>Terminó</th>
+            <th>Tiempo</th>
+            <th>Estado</th>
+          </tr>
+          <div className='orders-table-content'>
+            {orders?.length ? (
+              currentOrders.map((order, index) => (
+                <Order order={order} key={index} />
+              ))
+            ) : isLoading === false ? (
+              <Loader />
+            ) : (
+              <NoData />
+            )}
           </div>
         </div>
       </div>
-      <div className='orders-table'>
-        <tr className='orders-table-columns'>
-          <th>Orden</th>
-          <th style={{ width: '100%' }}>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>Empezó</th>
-          <th>Terminó</th>
-          <th>Tiempo</th>
-          <th>Estado</th>
-        </tr>
-        {orders?.length ? (
-          currentOrders.map((order, index) => (
-            <Order order={order} key={index} />
-          ))
-        ) : isLoading === false ? (
-          <Loader />
-        ) : (
-          <NoData />
-        )}
+      <div className='actual-orders-pagination'>
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 };

@@ -12,13 +12,14 @@
   --main-box-shadow: 0 0 10px 1px hsla(0, 0%, 97%, 0.096);
   --sidebar-width: 65px;
   --main-container-border-radius: 5px;
+  --main-padding-top: 30px
 }
 
 body {
   background-color: rgb(0, 0, 0);
-  padding-top: 35px;
   color: white;
   text-align: center;
+  padding-top: var(--main-padding-top);
 }
 
 html {
