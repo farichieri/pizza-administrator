@@ -19,8 +19,11 @@ const ActualEmployees = () => {
 
   const handleDelete = (event) => {
     event.preventDefault();
-    console.log(event.target.id);
-    if (window.confirm('¿Seguro que queres borrarlo bro?')) {
+    if (
+      window.confirm(
+        `Estas seguro de eliminar al usuario ${event.target.value}?`
+      )
+    ) {
       dispatch(deleteUser(event.target.id)).then((responseMessage) => {
         if (responseMessage) dispatch(getEmployees());
         alert(responseMessage);
@@ -43,13 +46,16 @@ const ActualEmployees = () => {
             <th>{employee.username}</th>
             <th>{employee.isAdmin ? 'SI' : 'NO'}</th>
             <th>
-              <button
-                onClick={handleDelete}
-                id={employee._id}
-                className='delete-employee'
-              >
-                x
-              </button>
+              {!employee.isSuperAdmin && (
+                <button
+                  onClick={handleDelete}
+                  id={employee._id}
+                  value={employee.username}
+                  className='delete-employee'
+                >
+                  x
+                </button>
+              )}
             </th>
           </tr>
         ))

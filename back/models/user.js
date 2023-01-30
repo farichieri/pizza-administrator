@@ -22,10 +22,15 @@ const User = new mongoose.Schema(
       type: Boolean,
       required: false,
     },
+    isSuperAdmin: {
+      default: false,
+      type: Boolean,
+      required: false,
+    },
   },
   { collection: 'user-data' }
 );
 
-const model = mongoose.model('UserData', User);
+const model = mongoose.model('User', User);
 
 module.exports = model;

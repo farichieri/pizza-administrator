@@ -9,8 +9,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const notFound = require('./middlewares/notFound');
 const handleErrors = require('./middlewares/handleErrors');
+const Database = require('./connection');
 const port = process.env.PORT || 5000;
-require('dotenv/config');
+require('dotenv').config();
 
 //middlewares
 app.use(cors());
@@ -38,6 +39,7 @@ app.post('/api/users', async (req, res) => {
       username: req.body.username,
       password: newPassword,
       isAdmin: req.body.isAdmin,
+      isSuperAdmin: req.body.isSuperAdmin,
     });
     res.json({ status: 'user created successfully' });
   } catch (error) {
@@ -238,13 +240,7 @@ app.get('/api/report/dates', async (req, res) => {
 app.use(notFound);
 app.use(handleErrors);
 
-mongoose.connect(`${process.env.DB_ACCESS}`, () => {
-  try {
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.log(error);
-  }
-});
+new Database();
 
 app.listen(port || 5000, () => {
   console.log(`Listening to port: ${port}!`);
