@@ -1,0 +1,1 @@
+# Pizza Order Administrator is a web page made for controlling orders and statistics of a pizza shop. The idea si to have multiple users and if the order is set, the kitchen will see the orders panel and change the status of the order to completed when the order is ready. You can test the app with the user: admin and password: 1234 (superAdmin)
