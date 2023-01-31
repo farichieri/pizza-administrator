@@ -124,7 +124,7 @@ export const getOrdersBetweenDates = (start, end) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `/api/report/dates?startDate=${startDate}&endDate=${endDate}`
+        `/api/reports/dates?startDate=${startDate}&endDate=${endDate}`
       );
       return dispatch({
         type: 'GET_ORDERS_BETWEEN_DATES',

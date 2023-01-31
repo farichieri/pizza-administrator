@@ -101,7 +101,7 @@ const ActualOrders = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [ordersPerPage, setOrdersPerPage] = useState(
-    localStorage.getItem('orders-per-page') || 5
+    localStorage.getItem('orders-per-page') || 10
   );
   const indexLastOrder = currentPage * ordersPerPage;
   const indexFirstOrder = indexLastOrder - ordersPerPage;
