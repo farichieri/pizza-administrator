@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../../models/User');
+const User = require('../../models/User.js');
 
 router.delete('/:_id', async (req, res) => {
   const { _id } = req.params;

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Order = require('../../models/order');
+const Order = require('../../models/order.js');
 
 router.get('/dates', async (req, res) => {
   try {
